@@ -51,30 +51,7 @@ int main(int argc, const char * argv[]) {
     std::string monthsArr[]= {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     month_long = monthsArr[std::stoi(month)-1];
     
-//    if(std::stoi(month) == 1){
-//        month_long = "January";
-//    } else if(std::stoi(month) == 2){
-//        month_long = "February";
-//    } else if(std::stoi(month) == 3){
-//        month_long = "March";
-//    } else if(std::stoi(month) == 4){
-//        month_long = "April";
-//    } else if(std::stoi(month) == 5){
-//        month_long = "May";
-//    } else if(std::stoi(month) == 6){
-//        month_long = "June";
-//    } else if(std::stoi(month) == 7){
-//        month_long = "July";
-//    } else if(std::stoi(month) == 8){
-//        month_long = "August";
-//    } else if(std::stoi(month) == 9){
-//        month_long = "September";
-//    } else if(std::stoi(month) == 10){
-//        month_long = "October";
-//    } else if(std::stoi(month) == 11){
-//        month_long = "November";
-//    } else { month_long = "December"; }
-//    
+
     //concatenate final result
     std::string result = month_long + " " + date + ", " + year;
     std::cout << result << std::endl;
