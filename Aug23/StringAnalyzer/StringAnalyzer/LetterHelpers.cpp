@@ -9,11 +9,8 @@
 #include <iostream>
 
 bool isTerminator(char c){
-    if(c == '.' || c == '?' || c == '!'){
-        return true;
-    } else {
-        return false;
-    }
+    return (c == '.' || c == '?' || c == '!');
+
 }
 
 bool isPunctuation(char c){
