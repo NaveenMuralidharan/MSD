@@ -26,7 +26,7 @@ bool isFlush(std::vector<Card> drawnCards){
     return result;
 }
 
-std::vector<Card> sortCard(std::vector<Card> drawnCards){
+void sortCard(std::vector<Card> &drawnCards){
     
     for(int i=0; i<drawnCards.size()-1; i++){
         int lowestCardIndex = i;
@@ -42,9 +42,10 @@ std::vector<Card> sortCard(std::vector<Card> drawnCards){
             drawnCards[lowestCardIndex] = temp;
         }
     }
-    return drawnCards;
     
 }
+
+
 
 bool isConsecutive(std::vector<Card> drawnCards){
     bool result = true;
@@ -61,14 +62,14 @@ bool isConsecutive(std::vector<Card> drawnCards){
 
 bool isStraight(std::vector<Card> drawnCards){
     //sort hand
-    std::vector<Card> sortedCards = sortCard(drawnCards);
+//    std::vector<Card> sortedCards = sortCard(drawnCards);
     //check if cards inc by 1
-    if(isConsecutive(sortedCards)){
+    if(isConsecutive(drawnCards)){
         return true;
-    } else if(sortedCards[0].num == 1 && sortedCards[1].num == 10){
+    } else if(drawnCards[0].num == 1 && drawnCards[1].num == 10){
         std::vector<Card> truncCards;
-        for(int i=1; i<sortedCards.size(); i++){
-            truncCards.push_back(sortedCards[i]);
+        for(int i=1; i<drawnCards.size(); i++){
+            truncCards.push_back(drawnCards[i]);
         }
         if(isConsecutive(truncCards)){
             return true;
@@ -80,16 +81,16 @@ bool isStraight(std::vector<Card> drawnCards){
 }
 
 bool isStraightFlush(std::vector<Card> drawnCards){
-    std::vector<Card> sortedCards = sortCard(drawnCards);
-    if(isFlush(sortedCards) && isStraight(sortedCards)){
+//    std::vector<Card> sortedCards = sortCard(drawnCards);
+    if(isFlush(drawnCards) && isStraight(drawnCards)){
         return true;
     }
     return false;
 }
 
 bool isRoyalFlush(std::vector<Card> drawnCards){
-    std::vector<Card> sortedCards = sortCard(drawnCards);
-    if(isFlush(sortedCards) && isStraight(sortedCards) && sortedCards[1].num == 10){
+//    std::vector<Card> sortedCards = sortCard(drawnCards);
+    if(isFlush(drawnCards) && isStraight(drawnCards) && drawnCards[1].num == 10){
         return true;
     }
     return false;
@@ -97,9 +98,9 @@ bool isRoyalFlush(std::vector<Card> drawnCards){
 
 bool isFullHouse(std::vector<Card> drawnCards){
     
-    std::vector<Card> sortedCards = sortCard(drawnCards);
+//    std::vector<Card> sortedCards = sortCard(drawnCards);
     
-    if((sortedCards[0].num == sortedCards[2].num && sortedCards[3].num == sortedCards[4].num) || (sortedCards[0].num == sortedCards[1].num && sortedCards[2].num == sortedCards[4].num)){
+    if((drawnCards[0].num == drawnCards[2].num && drawnCards[3].num == drawnCards[4].num) || (drawnCards[0].num == drawnCards[1].num && drawnCards[2].num == drawnCards[4].num)){
         return true;
     }
     return false;

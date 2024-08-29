@@ -12,7 +12,7 @@
 std::vector<Card> drawCards(std::vector<Card> cardDeck);
 bool isFlush(std::vector<Card> drawnCards);
 bool isStraight(std::vector<Card> drawnCards);
-std::vector<Card> sortCard(std::vector<Card> drawnCards);
+void sortCard(std::vector<Card> &drawnCards);
 bool isConsecutive(std::vector<Card> drawnCards);
 bool isStraightFlush(std::vector<Card> drawnCards);
 bool isRoyalFlush(std::vector<Card> drawnCards);

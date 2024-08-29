@@ -11,6 +11,7 @@ std::string playHand(std::vector<Card> cardDeck){
     
     shuffledDeck(cardDeck);
     std::vector<Card> drawnCards = drawCards(cardDeck);
+    sortCard(drawnCards);
     printDeck(drawnCards);
     
     if(isFullHouse(drawnCards)){
