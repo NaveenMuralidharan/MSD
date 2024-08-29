@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6B78EE1A2C7EDC5500704F2E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE192C7EDC5500704F2E /* main.cpp */; };
+		6B78EE222C7EDC8500704F2E /* CardHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE202C7EDC8500704F2E /* CardHelpers.cpp */; };
+		6B78EE252C7F86E800704F2E /* CardShuffle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE232C7F86E800704F2E /* CardShuffle.cpp */; };
+		6B78EE282C7F900200704F2E /* PokerHands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE262C7F900200704F2E /* PokerHands.cpp */; };
+		6B78EE2B2C7FFF8700704F2E /* PlayHand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE292C7FFF8700704F2E /* PlayHand.cpp */; };
+		6B78EE2E2C80043F00704F2E /* Statistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE2C2C80043F00704F2E /* Statistics.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6B78EE142C7EDC5500704F2E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6B78EE162C7EDC5500704F2E /* Poker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Poker; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B78EE192C7EDC5500704F2E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6B78EE202C7EDC8500704F2E /* CardHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CardHelpers.cpp; sourceTree = "<group>"; };
+		6B78EE212C7EDC8500704F2E /* CardHelpers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CardHelpers.hpp; sourceTree = "<group>"; };
+		6B78EE232C7F86E800704F2E /* CardShuffle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CardShuffle.cpp; sourceTree = "<group>"; };
+		6B78EE242C7F86E800704F2E /* CardShuffle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CardShuffle.hpp; sourceTree = "<group>"; };
+		6B78EE262C7F900200704F2E /* PokerHands.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PokerHands.cpp; sourceTree = "<group>"; };
+		6B78EE272C7F900200704F2E /* PokerHands.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PokerHands.hpp; sourceTree = "<group>"; };
+		6B78EE292C7FFF8700704F2E /* PlayHand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayHand.cpp; sourceTree = "<group>"; };
+		6B78EE2A2C7FFF8700704F2E /* PlayHand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayHand.hpp; sourceTree = "<group>"; };
+		6B78EE2C2C80043F00704F2E /* Statistics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Statistics.cpp; sourceTree = "<group>"; };
+		6B78EE2D2C80043F00704F2E /* Statistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Statistics.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6B78EE132C7EDC5500704F2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6B78EE0D2C7EDC5500704F2E = {
+			isa = PBXGroup;
+			children = (
+				6B78EE182C7EDC5500704F2E /* Poker */,
+				6B78EE172C7EDC5500704F2E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6B78EE172C7EDC5500704F2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6B78EE162C7EDC5500704F2E /* Poker */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6B78EE182C7EDC5500704F2E /* Poker */ = {
+			isa = PBXGroup;
+			children = (
+				6B78EE192C7EDC5500704F2E /* main.cpp */,
+				6B78EE202C7EDC8500704F2E /* CardHelpers.cpp */,
+				6B78EE212C7EDC8500704F2E /* CardHelpers.hpp */,
+				6B78EE232C7F86E800704F2E /* CardShuffle.cpp */,
+				6B78EE242C7F86E800704F2E /* CardShuffle.hpp */,
+				6B78EE262C7F900200704F2E /* PokerHands.cpp */,
+				6B78EE272C7F900200704F2E /* PokerHands.hpp */,
+				6B78EE292C7FFF8700704F2E /* PlayHand.cpp */,
+				6B78EE2A2C7FFF8700704F2E /* PlayHand.hpp */,
+				6B78EE2C2C80043F00704F2E /* Statistics.cpp */,
+				6B78EE2D2C80043F00704F2E /* Statistics.hpp */,
+			);
+			path = Poker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6B78EE152C7EDC5500704F2E /* Poker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B78EE1D2C7EDC5500704F2E /* Build configuration list for PBXNativeTarget "Poker" */;
+			buildPhases = (
+				6B78EE122C7EDC5500704F2E /* Sources */,
+				6B78EE132C7EDC5500704F2E /* Frameworks */,
+				6B78EE142C7EDC5500704F2E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Poker;
+			productName = Poker;
+			productReference = 6B78EE162C7EDC5500704F2E /* Poker */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6B78EE0E2C7EDC5500704F2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					6B78EE152C7EDC5500704F2E = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 6B78EE112C7EDC5500704F2E /* Build configuration list for PBXProject "Poker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6B78EE0D2C7EDC5500704F2E;
+			productRefGroup = 6B78EE172C7EDC5500704F2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6B78EE152C7EDC5500704F2E /* Poker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6B78EE122C7EDC5500704F2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B78EE2E2C80043F00704F2E /* Statistics.cpp in Sources */,
+				6B78EE1A2C7EDC5500704F2E /* main.cpp in Sources */,
+				6B78EE2B2C7FFF8700704F2E /* PlayHand.cpp in Sources */,
+				6B78EE252C7F86E800704F2E /* CardShuffle.cpp in Sources */,
+				6B78EE282C7F900200704F2E /* PokerHands.cpp in Sources */,
+				6B78EE222C7EDC8500704F2E /* CardHelpers.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6B78EE1B2C7EDC5500704F2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6B78EE1C2C7EDC5500704F2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6B78EE1E2C7EDC5500704F2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6B78EE1F2C7EDC5500704F2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6B78EE112C7EDC5500704F2E /* Build configuration list for PBXProject "Poker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B78EE1B2C7EDC5500704F2E /* Debug */,
+				6B78EE1C2C7EDC5500704F2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6B78EE1D2C7EDC5500704F2E /* Build configuration list for PBXNativeTarget "Poker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B78EE1E2C7EDC5500704F2E /* Debug */,
+				6B78EE1F2C7EDC5500704F2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6B78EE0E2C7EDC5500704F2E /* Project object */;
+}
