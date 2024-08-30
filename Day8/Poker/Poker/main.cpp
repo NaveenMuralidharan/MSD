@@ -18,6 +18,7 @@
 #include "PokerHands.hpp"
 #include "PlayHand.hpp"
 #include "Statistics.hpp"
+#include "TestPoker.hpp"
 #include <time.h>
 
 int main(int argc, const char * argv[]) {
@@ -28,9 +29,20 @@ int main(int argc, const char * argv[]) {
     playHand(cardDeck);
     
     statistics(cardDeck, 10000);
-    
-    
-    
-    
+
+//**********************************
+//    TESTS:
+//    FlushTest1();
+//    FlushTest2();
+//    StraightTest1();
+//    StraightTest2();
+//    StraightTest3();
+//    StraightFlushTest1();
+//    StraightFlushTest2();
+//    RoyalFlushTest1();
+//    RoyalFlushTest2();
+//    FullHouseTest1();
+//    FullHouseTest2();
+//**********************************
     return 0;
 }

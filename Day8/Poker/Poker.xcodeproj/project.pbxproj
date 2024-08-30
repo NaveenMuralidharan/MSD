@@ -13,6 +13,7 @@
 		6B78EE282C7F900200704F2E /* PokerHands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE262C7F900200704F2E /* PokerHands.cpp */; };
 		6B78EE2B2C7FFF8700704F2E /* PlayHand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE292C7FFF8700704F2E /* PlayHand.cpp */; };
 		6B78EE2E2C80043F00704F2E /* Statistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE2C2C80043F00704F2E /* Statistics.cpp */; };
+		6B78EE472C8147A800704F2E /* TestPoker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EE452C8147A800704F2E /* TestPoker.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,8 @@
 		6B78EE2A2C7FFF8700704F2E /* PlayHand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayHand.hpp; sourceTree = "<group>"; };
 		6B78EE2C2C80043F00704F2E /* Statistics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Statistics.cpp; sourceTree = "<group>"; };
 		6B78EE2D2C80043F00704F2E /* Statistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Statistics.hpp; sourceTree = "<group>"; };
+		6B78EE452C8147A800704F2E /* TestPoker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestPoker.cpp; sourceTree = "<group>"; };
+		6B78EE462C8147A800704F2E /* TestPoker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestPoker.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				6B78EE2A2C7FFF8700704F2E /* PlayHand.hpp */,
 				6B78EE2C2C80043F00704F2E /* Statistics.cpp */,
 				6B78EE2D2C80043F00704F2E /* Statistics.hpp */,
+				6B78EE452C8147A800704F2E /* TestPoker.cpp */,
+				6B78EE462C8147A800704F2E /* TestPoker.hpp */,
 			);
 			path = Poker;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				6B78EE1A2C7EDC5500704F2E /* main.cpp in Sources */,
 				6B78EE2B2C7FFF8700704F2E /* PlayHand.cpp in Sources */,
 				6B78EE252C7F86E800704F2E /* CardShuffle.cpp in Sources */,
+				6B78EE472C8147A800704F2E /* TestPoker.cpp in Sources */,
 				6B78EE282C7F900200704F2E /* PokerHands.cpp in Sources */,
 				6B78EE222C7EDC8500704F2E /* CardHelpers.cpp in Sources */,
 			);
