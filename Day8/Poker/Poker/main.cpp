@@ -26,9 +26,9 @@ int main(int argc, const char * argv[]) {
     
     std::vector<Card> cardDeck = createDeck();
     
-    playHand(cardDeck);
+//    playHand(cardDeck);
     
-    statistics(cardDeck, 10000);
+    statistics(cardDeck, 100000);
 
 //**********************************
 //    TESTS:

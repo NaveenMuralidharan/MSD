@@ -18,7 +18,7 @@ std::vector<Card> createDeck(){
     return cardDeck;
 };
 
-void printDeck(std::vector<Card> &cardDeck){
+void printDeck(const std::vector<Card> &cardDeck){
     for(Card card : cardDeck){
         if(card.num == 1){
             std::cout << card.suite << "A" << std::endl;

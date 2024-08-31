@@ -12,6 +12,6 @@
 
 struct Card{std::string suite; int num;};
 std::vector<Card> createDeck();
-void printDeck(std::vector<Card> &cardDeck);
+void printDeck(const std::vector<Card> &cardDeck);
 
 #endif /* CardHelpers_hpp */
