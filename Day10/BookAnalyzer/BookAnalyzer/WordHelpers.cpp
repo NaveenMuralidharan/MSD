@@ -76,7 +76,7 @@ void keyWordPrint(std::vector<FoundWord> foundWords, int charCount, std::string 
     
     if(foundWords.size() != 0){
         for(int i=0; i<foundWords.size(); i++){
-            double percent = foundWords[i].charCount / (double) charCount;
+            double percent = (foundWords[i].charCount / (double) charCount) * 100;
             int roundPercent = std::round(percent);
             std::string phrase = words[foundWords[i].wordIndex-1]+" "+words[foundWords[i].wordIndex]+" "+words[foundWords[i].wordIndex+1];
             result += "at "+std::to_string(roundPercent)+"%: "+ "\"" +phrase+"\""+"\n";
