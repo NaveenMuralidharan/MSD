@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6B78EEA12C86A41400704F2E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EEA02C86A41400704F2E /* main.cpp */; };
+		6B78EEA92C87DC5B00704F2E /* StringHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EEA72C87DC5B00704F2E /* StringHelpers.cpp */; };
+		6B78EEAC2C87DD4400704F2E /* IntegerHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EEAA2C87DD4400704F2E /* IntegerHelpers.cpp */; };
+		6B78EEAF2C87DF4800704F2E /* Tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EEAD2C87DF4800704F2E /* Tests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		6B78EE9D2C86A41400704F2E /* NumberConverter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NumberConverter; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B78EEA02C86A41400704F2E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6B78EEA72C87DC5B00704F2E /* StringHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelpers.cpp; sourceTree = "<group>"; };
+		6B78EEA82C87DC5B00704F2E /* StringHelpers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringHelpers.hpp; sourceTree = "<group>"; };
+		6B78EEAA2C87DD4400704F2E /* IntegerHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IntegerHelpers.cpp; sourceTree = "<group>"; };
+		6B78EEAB2C87DD4400704F2E /* IntegerHelpers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IntegerHelpers.hpp; sourceTree = "<group>"; };
+		6B78EEAD2C87DF4800704F2E /* Tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tests.cpp; sourceTree = "<group>"; };
+		6B78EEAE2C87DF4800704F2E /* Tests.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tests.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				6B78EEA02C86A41400704F2E /* main.cpp */,
+				6B78EEA72C87DC5B00704F2E /* StringHelpers.cpp */,
+				6B78EEA82C87DC5B00704F2E /* StringHelpers.hpp */,
+				6B78EEAA2C87DD4400704F2E /* IntegerHelpers.cpp */,
+				6B78EEAB2C87DD4400704F2E /* IntegerHelpers.hpp */,
+				6B78EEAD2C87DF4800704F2E /* Tests.cpp */,
+				6B78EEAE2C87DF4800704F2E /* Tests.hpp */,
 			);
 			path = NumberConverter;
 			sourceTree = "<group>";
@@ -119,6 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B78EEAC2C87DD4400704F2E /* IntegerHelpers.cpp in Sources */,
+				6B78EEAF2C87DF4800704F2E /* Tests.cpp in Sources */,
+				6B78EEA92C87DC5B00704F2E /* StringHelpers.cpp in Sources */,
 				6B78EEA12C86A41400704F2E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
