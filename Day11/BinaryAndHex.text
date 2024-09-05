@@ -2,7 +2,7 @@ Convert the following decimal numbers to binary and hexadecimal
         B       H
 12     1100     C
 63    111111   3F 
-100   1100100  44
+100   1100100  64
 127   1111111  7F
 254   11111110 FE
 

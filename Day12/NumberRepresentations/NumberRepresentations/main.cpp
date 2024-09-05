@@ -26,6 +26,13 @@ bool approxEquals(double a, double b, double tolerance){
 
 int main(int argc, const char * argv[]) {
     
+    //Print out the sizes of the built in numeric types.
+    std::cout << "Size of int "<<sizeof(int) << std::endl;
+    std::cout << "Size of short "<<sizeof(short) << std::endl;
+    std::cout << "Size of long "<<sizeof(long) << std::endl;
+    std::cout << "Size of float "<<sizeof(float) << std::endl;
+    std::cout << "Size of double "<<sizeof(double) << std::endl;
+
     std::cout << "Size of int8_t "<<sizeof(int8_t) << std::endl;
     std::cout << "Size of int16_t "<<sizeof(int16_t) << std::endl;
     std::cout << "Size of int32_t "<<sizeof(int32_t) << std::endl;
