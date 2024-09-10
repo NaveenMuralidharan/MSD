@@ -2,7 +2,7 @@
 //  Vector.hpp
 //  MakeYourOwnVector
 //
-//  Created by Naveen Kumar on 9/10/24.
+//  Created by Naveen Kumar and Ben Lemon on 9/10/24.
 //
 
 #ifndef Vector_hpp
