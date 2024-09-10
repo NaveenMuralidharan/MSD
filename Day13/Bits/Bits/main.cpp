@@ -2,7 +2,7 @@
 //  main.cpp
 //  Bits
 //
-//  Created by Naveen Kumar on 9/5/24.
+//  Created by Naveen Kumar and Nathan Johnston on 9/5/24.
 //
 
 /*
@@ -173,10 +173,14 @@ uint32_t SetByte( uint32_t input, uint8_t value, int b )
  * This function should return x + 1 but should only make use of bitwise operators and == or !=
 */
 int Increment( uint32_t x ){
+    //Save x in a new variable so we can shift x as a janky version of incrementing without affecting the original value
     uint32_t input = x;
+    //Mask is all 0s with a 1 on the end
     uint32_t mask = 1;
+    //Mask is all 1s with a 0 on the end
     mask = ~mask;
     
+    // If the first position is a one proceed into loop to swap that corresponding position in input
     while(GetBit(x, 0) == 1){
         input = input & mask;
         x >>= 1;
