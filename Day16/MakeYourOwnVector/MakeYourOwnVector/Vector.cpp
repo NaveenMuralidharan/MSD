@@ -7,55 +7,61 @@
 
 #include "Vector.hpp"
 
-myVector makeVector(int initialCapacity){
+myVector::myVector(int initialCapacity){
     
-    myVector myVec;
-    myVec.capacity = initialCapacity;
-    myVec.ptr = new int[myVec.capacity];
-    myVec.size = 0;
-    
-    return myVec;
+    capacity = initialCapacity;
+    ptr = new int[capacity];
+    size = 0;
 }
 
-void freeVector(myVector &myVec){
-    delete myVec.ptr;
-    myVec.ptr = nullptr;
+int myVector::getSize(){
+    return size;
 }
 
-void pushBack(myVector &myVec, int value){
-    if(myVec.size == myVec.capacity){
-        growVector(myVec);
+int myVector::getCapacity(){
+    return capacity;
+}
+
+void myVector::freeVector(){
+    delete ptr;
+    ptr = nullptr;
+    size = 0;
+}
+
+void myVector::pushBack(int value){
+    if(size == capacity){
+        growVector();
     }
-    myVec.ptr[myVec.size] = value;
-    myVec.size ++;
+    ptr[size] = value;
+    size ++;
 }
 
-void popBack(myVector &myVec){
-    if(myVec.size == 0){
-        myVec.size = 0;
+void myVector::popBack(){
+    if(size == 0){
+        size = 0;
     } else {
-        myVec.size -= 1;
+        size -= 1;
     }
 }
 
-int get(const myVector &myVec, int index){
-    return myVec.ptr[index];
+int myVector::get(int index){
+    return ptr[index];
 }
 
-void set(myVector &myVec, int index, int newValue){
-    if(index < myVec.size){
-        myVec.ptr[index] = newValue;
+void myVector::set(int index, int newValue){
+    if(index < size){
+        ptr[index] = newValue;
     }
 }
 
-void growVector(myVector &myVec){
-    int *newPtr = new int[myVec.capacity*2];
+void myVector::growVector(){
+    int *newPtr = new int[capacity*2];
     
-    for(int i=0; i<myVec.size; i++){
-        newPtr[i] = myVec.ptr[i];
+    for(int i=0; i<size; i++){
+        newPtr[i] = ptr[i];
     }
-    delete [] myVec.ptr;
-    myVec.ptr = newPtr;
-    myVec.capacity *= 2;
+    delete [] ptr;
+    ptr = newPtr;
+    capacity *= 2;
     newPtr = nullptr;
 }
