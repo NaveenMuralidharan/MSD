@@ -138,21 +138,21 @@ void Fraction::operator /=(Fraction rhs){
     denominator = temp.denominator;
 }
 
-bool Fraction::operator ==(Fraction rhs){
+bool Fraction::operator ==(Fraction rhs)const{
     return Fraction(numerator, denominator).toDouble() == rhs.toDouble();
 }
-bool Fraction::operator !=(Fraction rhs){
+bool Fraction::operator !=(Fraction rhs)const{
     return Fraction(numerator, denominator).toDouble() != rhs.toDouble();
 }
-bool Fraction::operator <(Fraction rhs){
+bool Fraction::operator <(Fraction rhs)const{
     return Fraction(numerator, denominator).toDouble() < rhs.toDouble();
 }
-bool Fraction::operator >(Fraction rhs){
+bool Fraction::operator >(Fraction rhs)const{
     return Fraction(numerator, denominator).toDouble() > rhs.toDouble();
 }
-bool Fraction::operator <=(Fraction rhs){
+bool Fraction::operator <=(Fraction rhs)const{
     return Fraction(numerator, denominator).toDouble() < rhs.toDouble() || Fraction(numerator, denominator).toDouble() == rhs.toDouble();
 }
-bool Fraction::operator >=(Fraction rhs){
+bool Fraction::operator >=(Fraction rhs)const{
     return Fraction(numerator, denominator).toDouble() > rhs.toDouble() || Fraction(numerator, denominator).toDouble() == rhs.toDouble();
 }

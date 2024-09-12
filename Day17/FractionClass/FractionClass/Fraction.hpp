@@ -38,12 +38,12 @@ public:
     void operator *=(Fraction rhs);
     Fraction operator /(Fraction rhs)const;
     void operator /=(Fraction rhs);
-    bool operator ==(Fraction rhs);
-    bool operator !=(Fraction rhs);
-    bool operator <(Fraction rhs);
-    bool operator >(Fraction rhs);
-    bool operator <=(Fraction rhs);
-    bool operator >=(Fraction rhs);
+    bool operator ==(Fraction rhs)const;
+    bool operator !=(Fraction rhs)const;
+    bool operator <(Fraction rhs)const;
+    bool operator >(Fraction rhs)const;
+    bool operator <=(Fraction rhs)const;
+    bool operator >=(Fraction rhs)const;
     
 };
 
