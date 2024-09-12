@@ -188,6 +188,7 @@ void TestPlus()
     Test( "Addition of 2 negative numerators", "-31/15", result3 );
     //Test operators + and +=
     Fraction f10 = f1 + f2;
+    std::string resultX = f1.toString();
     std::string result4 = f10.toString();
     Test( "+ operator of non-reduced", "17/12", result4 );
     f1 += f2;

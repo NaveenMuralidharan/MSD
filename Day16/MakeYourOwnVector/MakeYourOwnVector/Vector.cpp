@@ -13,6 +13,30 @@ myVector::myVector(int initialCapacity){
     ptr = new int[capacity];
     size = 0;
 }
+//copy constructor
+myVector::myVector(const myVector & rhs){
+    ptr = new int[rhs.capacity];
+    for(int i=0; i< rhs.size; i++){
+        ptr[i] = rhs.ptr[i];
+    }
+    size = rhs.size;
+    capacity = rhs.capacity;
+}
+// overload = operator
+void myVector::operator =(const myVector & rhs){
+    myVector temp = myVector(rhs);
+    std::swap(size, temp.size);
+    std::swap(capacity, temp.capacity);
+    std::swap(ptr, temp.ptr);
+}
+// [] to get value at index
+int myVector::operator [](int index)const{
+    return ptr[index];
+}
+//[] to set value at index
+int& myVector::operator [](int index){
+    return ptr[index];
+}
 
 int myVector::getSize(){
     return size;

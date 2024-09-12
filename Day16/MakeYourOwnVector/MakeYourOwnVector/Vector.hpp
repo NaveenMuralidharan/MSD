@@ -7,7 +7,7 @@
 
 #ifndef Vector_hpp
 #define Vector_hpp
-
+#include <iostream>
 #include <stdio.h>
 
 class myVector{
@@ -17,6 +17,10 @@ class myVector{
     
 public:
     myVector(int initialCapacity);
+    myVector(const myVector & rhs);
+    void operator =(const myVector & rhs);
+    int operator [](int index)const;
+    int& operator [](int index);
     int getSize();
     int getCapacity();
     ~myVector();

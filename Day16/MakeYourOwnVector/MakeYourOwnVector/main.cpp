@@ -49,5 +49,34 @@ int main(int argc, const char * argv[]) {
     testSetVec.set(0, 10);
     assert(testSetVec.get(0)==10);
     
+    //test copy constructor
+    myVector copy(4);
+    copy.pushBack(1);
+    copy.pushBack(2);
+    
+    myVector testCopy(copy);
+    assert(copy.getSize() == testCopy.getSize());
+    assert(copy.get(0) == testCopy.get(0));
+    testCopy.pushBack(3);
+    assert(copy.get(2) != testCopy.get(2));
+    
+    // test = operator overload
+    myVector copy1(4);
+    copy1.pushBack(1);
+    copy1.pushBack(2);
+    
+    myVector copy2(6);
+    copy2.pushBack(3);
+    copy2.pushBack(4);
+    copy1 = copy2;
+    assert(copy1.get(0)==copy2.get(0));
+    assert(copy1.getSize()==copy2.getSize());
+    //test [] get value
+    assert(copy2[0] == 3);
+    //test [] set value
+    copy2[0] = 10;
+    assert(copy2[0] == 10);
+
+    
     return 0;
 }
