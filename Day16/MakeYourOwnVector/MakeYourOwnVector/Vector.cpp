@@ -22,10 +22,8 @@ int myVector::getCapacity(){
     return capacity;
 }
 
-void myVector::freeVector(){
-    delete ptr;
-    ptr = nullptr;
-    size = 0;
+myVector::~myVector(){
+    delete [] ptr;
 }
 
 void myVector::pushBack(int value){

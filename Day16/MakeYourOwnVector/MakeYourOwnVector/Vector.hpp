@@ -19,7 +19,7 @@ public:
     myVector(int initialCapacity);
     int getSize();
     int getCapacity();
-    void freeVector();
+    ~myVector();
     void pushBack(int value);
     void popBack();
     int get(int index);

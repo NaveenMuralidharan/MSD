@@ -18,9 +18,6 @@ int main(int argc, const char * argv[]) {
     assert(test1Vec.getCapacity() == 4);
     assert(test1Vec.getSize() == 2);
 //
-    //test freeVector
-    test1Vec.freeVector();
-    assert(test1Vec.getSize() == 0);
     
     //test pushBack
     myVector test2Vec(3);
