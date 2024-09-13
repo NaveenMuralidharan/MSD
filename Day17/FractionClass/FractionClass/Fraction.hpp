@@ -23,27 +23,27 @@ class Fraction{
 public:
     Fraction();
     Fraction(long n, long d);
-    Fraction plus(Fraction rhs);
-    Fraction minus(Fraction rhs);
-    Fraction times(Fraction rhs);
-    Fraction dividedBy(Fraction rhs);
-    double toDouble();
-    Fraction reciprocal();
-    string toString();
-    Fraction operator +(Fraction rhs)const;
-    void operator +=(Fraction rhs);
-    Fraction operator -(Fraction rhs)const;
-    void operator -=(Fraction rhs);
-    Fraction operator *(Fraction rhs)const;
-    void operator *=(Fraction rhs);
-    Fraction operator /(Fraction rhs)const;
-    void operator /=(Fraction rhs);
-    bool operator ==(Fraction rhs)const;
-    bool operator !=(Fraction rhs)const;
-    bool operator <(Fraction rhs)const;
-    bool operator >(Fraction rhs)const;
-    bool operator <=(Fraction rhs)const;
-    bool operator >=(Fraction rhs)const;
+    Fraction plus(const Fraction& rhs)const;
+    Fraction minus(const Fraction& rhs)const;
+    Fraction times(const Fraction& rhs)const;
+    Fraction dividedBy(const Fraction& rhs)const;
+    double toDouble()const;
+    Fraction reciprocal()const;
+    string toString()const;
+    Fraction operator +(const Fraction& rhs)const;
+    void operator +=(const Fraction& rhs);
+    Fraction operator -(const Fraction& rhs)const;
+    void operator -=(const Fraction& rhs);
+    Fraction operator *(const Fraction& rhs)const;
+    void operator *=(const Fraction& rhs);
+    Fraction operator /(const Fraction& rhs)const;
+    void operator /=(const Fraction& rhs);
+    bool operator ==(const Fraction& rhs)const;
+    bool operator !=(const Fraction& rhs)const;
+    bool operator <(const Fraction& rhs)const;
+    bool operator >(const Fraction& rhs)const;
+    bool operator <=(const Fraction& rhs)const;
+    bool operator >=(const Fraction& rhs)const;
     
 };
 

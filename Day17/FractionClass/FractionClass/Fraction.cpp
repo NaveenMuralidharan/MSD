@@ -46,113 +46,109 @@ Fraction::Fraction(long n, long d){
     }
 }
 
-Fraction Fraction::plus(Fraction rhs){
+Fraction Fraction::plus(const Fraction& rhs)const{
     long newDenominator = denominator * rhs.denominator;
     long newNumerator = (numerator * rhs.denominator) + (rhs.numerator * denominator);
     return Fraction(newNumerator, newDenominator);
 }
 
-Fraction Fraction::minus(Fraction rhs){
+Fraction Fraction::minus(const Fraction& rhs)const{
     long newDenominator = denominator * rhs.denominator;
     long newNumerator = (numerator * rhs.denominator) - (rhs.numerator * denominator);
     return Fraction(newNumerator, newDenominator);
 }
 
-Fraction Fraction::times(Fraction rhs){
+Fraction Fraction::times(const Fraction& rhs)const{
     long newDenominator = denominator * rhs.denominator;
     long newNumerator = numerator * rhs.numerator;
     return Fraction(newNumerator, newDenominator);
 }
-Fraction Fraction::dividedBy(Fraction rhs){
+Fraction Fraction::dividedBy(const Fraction& rhs)const{
     long newDenominator = denominator * rhs.numerator;
     long newNumerator = numerator * rhs.denominator;
     return Fraction(newNumerator, newDenominator);
 }
 
-double Fraction::toDouble(){
+double Fraction::toDouble()const{
     double result = numerator / (double)denominator;
     return result;
 }
 
-Fraction Fraction::reciprocal(){
+Fraction Fraction::reciprocal()const{
     
     return Fraction(denominator, numerator);
 }
 
 
-string Fraction::toString(){
+string Fraction::toString()const{
     /* pre: fraction is reduced and - sign is in numerator*/
     string numtr = std::to_string(numerator);
     string denmtr = std::to_string(denominator);
     string result = numtr + '/' + denmtr;
-//    if(numerator < 0){
-//        result = '-' + numtr + '/' + denmtr;
-//    } else {
-//        result = numtr + '/' + denmtr;
-//    }
+
     return result;
 }
 
 //********************************************
 //OPERATOR OVERLOADS
-Fraction Fraction::operator +(Fraction rhs)const{
+Fraction Fraction::operator +(const Fraction& rhs)const{
     return Fraction(numerator, denominator).plus(rhs);
 }
 
-void Fraction::operator +=(Fraction rhs){
+void Fraction::operator +=(const Fraction& rhs){
     Fraction temp = Fraction(numerator, denominator).plus(rhs);
     numerator = temp.numerator;
     denominator = temp.denominator;
 }
 
-Fraction Fraction::operator -(Fraction rhs)const{
+Fraction Fraction::operator -(const Fraction& rhs)const{
     return Fraction(numerator, denominator).minus(rhs);
     
 }
 
-void Fraction::operator -=(Fraction rhs){
+void Fraction::operator -=(const Fraction& rhs){
     Fraction temp = Fraction(numerator, denominator).minus(rhs);
     numerator = temp.numerator;
     denominator = temp.denominator;
 }
 
-Fraction Fraction::operator *(Fraction rhs)const{
+Fraction Fraction::operator *(const Fraction& rhs)const{
     return Fraction(numerator, denominator).times(rhs);
     
 }
 
-void Fraction::operator *=(Fraction rhs){
+void Fraction::operator *=(const Fraction& rhs){
     Fraction temp = Fraction(numerator, denominator).times(rhs);
     numerator = temp.numerator;
     denominator = temp.denominator;
 }
 
-Fraction Fraction::operator /(Fraction rhs)const{
+Fraction Fraction::operator /(const Fraction& rhs)const{
     return Fraction(numerator, denominator).dividedBy(rhs);
     
 }
 
-void Fraction::operator /=(Fraction rhs){
+void Fraction::operator /=(const Fraction& rhs){
     Fraction temp = Fraction(numerator, denominator).dividedBy(rhs);
     numerator = temp.numerator;
     denominator = temp.denominator;
 }
 
-bool Fraction::operator ==(Fraction rhs)const{
+bool Fraction::operator ==(const Fraction& rhs)const{
     return Fraction(numerator, denominator).toDouble() == rhs.toDouble();
 }
-bool Fraction::operator !=(Fraction rhs)const{
+bool Fraction::operator !=(const Fraction& rhs)const{
     return Fraction(numerator, denominator).toDouble() != rhs.toDouble();
 }
-bool Fraction::operator <(Fraction rhs)const{
+bool Fraction::operator <(const Fraction& rhs)const{
     return Fraction(numerator, denominator).toDouble() < rhs.toDouble();
 }
-bool Fraction::operator >(Fraction rhs)const{
+bool Fraction::operator >(const Fraction& rhs)const{
     return Fraction(numerator, denominator).toDouble() > rhs.toDouble();
 }
-bool Fraction::operator <=(Fraction rhs)const{
+bool Fraction::operator <=(const Fraction& rhs)const{
     return Fraction(numerator, denominator).toDouble() < rhs.toDouble() || Fraction(numerator, denominator).toDouble() == rhs.toDouble();
 }
-bool Fraction::operator >=(Fraction rhs)const{
+bool Fraction::operator >=(const Fraction& rhs)const{
     return Fraction(numerator, denominator).toDouble() > rhs.toDouble() || Fraction(numerator, denominator).toDouble() == rhs.toDouble();
 }
