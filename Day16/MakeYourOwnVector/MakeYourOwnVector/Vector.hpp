@@ -37,6 +37,10 @@ public:
     bool operator <=(const myVector& rhs)const;
     bool operator >(const myVector& rhs)const;
     bool operator >=(const myVector& rhs)const;
+    T* begin()const;
+    T* begin();
+    T* end()const;
+    T* end();
 };
 
 template <typename T>
@@ -178,5 +182,24 @@ template <typename T>
 bool myVector<T>::operator >=(const myVector& rhs)const{
     return (*this == rhs || *this > rhs);
 }
-
+//begin() const
+template <typename T>
+T* myVector<T>::begin()const{
+    return ptr;
+}
+//begin() non const
+template <typename T>
+T* myVector<T>::begin(){
+    return ptr;
+}
+//end() const
+template <typename T>
+T* myVector<T>::end()const{
+    return begin() + size;
+}
+//end() non const
+template <typename T>
+T* myVector<T>::end(){
+    return begin() + size;
+}
 #endif /* Vector_hpp */

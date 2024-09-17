@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Vector.hpp"
 #include <cassert>
+#include <numeric>
 
 int main(int argc, const char * argv[]) {
     
@@ -181,6 +182,30 @@ int main(int argc, const char * argv[]) {
     //test >= operator
     assert(testLess2 >= testLess1);
     assert(testDblEq1 >= testDblEq2);
+    
+    //test STL methods
+    //for each
+    myVector<int> testStl(4);
+    testStl.pushBack(1);
+    testStl.pushBack(0);
+    testStl.pushBack(10);
+    testStl.pushBack(3);
+    for(int x : testStl){
+        std::cout << x << std::endl;
+    }
+    //sort
+    std::sort(testStl.begin(), testStl.end());
+    for(int x : testStl){
+        std::cout << x << std::endl;
+    }
+    //min-element
+    std::cout<< "Min element is: "<<*std::min_element(testStl.begin(), testStl.end())<<std::endl;
+    //sum
+    int sum = std::accumulate(testStl.begin(), testStl.end(), 0);
+    std::cout << "sum is " << sum << std::endl;
+    //count_if
+    int count = std::count_if(testStl.begin(), testStl.end(), [](int x){ return (x%2 == 0);});
+    std::cout << "Even num count is " << count << std::endl;
     
     return 0;
 }
