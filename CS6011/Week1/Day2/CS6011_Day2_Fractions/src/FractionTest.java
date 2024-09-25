@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.GregorianCalendar;
 
 class FractionTest {
-    
+
     @Test
     public void testPlus() {
         Fraction f1 = new Fraction(1,3);

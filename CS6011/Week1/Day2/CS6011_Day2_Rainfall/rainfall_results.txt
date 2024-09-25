@@ -1,0 +1,14 @@
+Macon Rainfall Statistics: 
+The overall average rainfall amount is 3.97
+The average rainfall amount for January is 3.84 inches.
+The average rainfall amount for February is 4.18 inches.
+The average rainfall amount for March is 4.36 inches.
+The average rainfall amount for April is 3.53 inches.
+The average rainfall amount for May is 2.71 inches.
+The average rainfall amount for June is 4.95 inches.
+The average rainfall amount for July is 4.46 inches.
+The average rainfall amount for August is 4.38 inches.
+The average rainfall amount for September is 4.52 inches.
+The average rainfall amount for October is 2.24 inches.
+The average rainfall amount for November is 3.50 inches.
+The average rainfall amount for December is 4.94 inches.
