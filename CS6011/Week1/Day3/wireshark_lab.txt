@@ -1,0 +1,29 @@
+My laptop's IPv4 is 10.18.189.54
+Ben Lemon: 10.18.199.121
+
+
+Data sent:
+Source address: 10.18.199.121
+Destination address: 10.18.189.54
+
+how do the integer values compare with the ASCII that is displayed in the terminal? Does it match anything that we have seen before?
+The data is represented as hex values on the ASCII table.
+
+How long does it take a ping packet to travel to your classmate's machine and back?
+ - The time ranges from 5.518ms to 115.675ms.
+
+Try ping google.com. How long does it take these ping packets to travel?  Try ping www.louvre.fr. How long does this take? What do these numbers tell you?
+-Ping google.com response time ranges from 17.078ms to 56.207ms.
+-Ping www.louvre.fr resulted in session timeout, no packets received, 100% packet loss.
+-The average time taken to receive packets from google, a remote network, was longer than receiving packets from my partner over the same network. 
+
+Step 3: HTTP:
+My IP -> server [SYN]
+Server -> My IP [SYN, ACK]
+My IP -> Server [ACK]
+My IP -> Server GET/HTTP
+
+Curl is a tool for transferring data from or to a server using URLs.
+While using curl example.com, the results are similar to opening example.com on the browser on Wireshark. The terminal displays the raw html.
+
+When visiting http://github.com, the url changes to https as it's using a secure http protocol. We can only read the first couple of messages, everything else is secure "Application Data". 
