@@ -22,6 +22,9 @@ public class Main {
             String[] requestArr = scanner.nextLine().split("[/]");
             String fileName = requestArr[1].substring(0,requestArr[1].length()-5);
 
+            String[] cssArr = fileName.split("[.]");
+            String fileType = cssArr[1];
+
             //check if file name is in resources, if not and fileName is not empty, send 404 err
             String path = "./src/resources/"+fileName;
             if(fileName.isEmpty()){
@@ -40,8 +43,8 @@ public class Main {
                 long fileLength = fileInput.getChannel().size();
                 byte[] data = new byte[(int) fileLength];
                 fileInput.read(data);
-
-                byte[] headerBytes = ("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n").getBytes();
+                
+                byte[] headerBytes = ("HTTP/1.1 200 OK\r\nContent-Type: text/" + fileType + "\r\n\r\n").getBytes();
 
                 int resArrLength = headerBytes.length + data.length;
                 byte[] resBytes = new byte[resArrLength];
