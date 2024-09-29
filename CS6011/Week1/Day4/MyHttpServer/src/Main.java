@@ -22,13 +22,18 @@ public class Main {
             String[] requestArr = scanner.nextLine().split("[/]");
             String fileName = requestArr[1].substring(0,requestArr[1].length()-5);
 
-            String[] cssArr = fileName.split("[.]");
-            String fileType = cssArr[1];
+//            String[] cssArr = fileName.split("[.]");
+//            String fileType = cssArr[1];
 
             //check if file name is in resources, if not and fileName is not empty, send 404 err
+            String fileType;
             String path = "./src/resources/"+fileName;
             if(fileName.isEmpty()){
                 path = "./src/resources/index.html";
+                fileType = "html";
+            } else {
+                String[] cssArr = fileName.split("[.]");
+                fileType = cssArr[1];
             }
 
             File file = new File(path);
