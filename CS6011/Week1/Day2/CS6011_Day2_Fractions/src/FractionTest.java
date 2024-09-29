@@ -16,6 +16,17 @@ class FractionTest {
     }
 
     @Test
+    public void testZeroDenominator(){
+        try{
+            Fraction f0 = new Fraction(1,0);
+            assert(false);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Test
     public void testMinus() {
         Fraction f1 = new Fraction(7,3);
         Fraction f2 = new Fraction(-3,3);

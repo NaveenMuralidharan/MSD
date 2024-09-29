@@ -43,7 +43,7 @@ public class Main {
                 long fileLength = fileInput.getChannel().size();
                 byte[] data = new byte[(int) fileLength];
                 fileInput.read(data);
-                
+
                 byte[] headerBytes = ("HTTP/1.1 200 OK\r\nContent-Type: text/" + fileType + "\r\n\r\n").getBytes();
 
                 int resArrLength = headerBytes.length + data.length;

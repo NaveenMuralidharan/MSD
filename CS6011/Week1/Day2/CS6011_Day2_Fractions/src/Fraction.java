@@ -25,9 +25,13 @@ public class Fraction {
             den = 1;
         }
 
-        public Fraction(long n, long d){
+        public Fraction(long n, long d) throws ArithmeticException{
             num = n;
             den = d;
+
+            if(den == 0){
+                throw new ArithmeticException("Denominator cannot be 0");
+            }
 
             if(den < 0) {
                 num *= -1;

@@ -23,7 +23,7 @@ int numWords(std::string text){
 int numSentences(std::string text){
     int numSentences = 0;
     for(int i=0; i < text.length(); i++){
-        if(isTerminator(text[i]) || isPunctuation(text[i])){
+        if(isTerminator(text[i])){
                     numSentences += 1;
                 }
     }

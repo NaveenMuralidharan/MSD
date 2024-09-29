@@ -76,7 +76,7 @@ int main(int argc, const char * argv[]) {
     //****************************
     //PART 3:
     
-    std::ifstream ins("./UTF-8-demo.txt");
+    std::ifstream ins("/Users/naveenkumar/MSD/CS6010/Day12/NumberRepresentations/NumberRepresentations/UTF-8-demo.txt");
     
     if(ins.fail()){
         std::cout << "file not found" <<std::endl;
