@@ -3,6 +3,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 
 class FractionTest {
@@ -61,6 +63,20 @@ class FractionTest {
     public void toDouble() {
         Fraction f1 = new Fraction(1,2);
         Assertions.assertEquals(f1.toDouble(), 0.5);
+    }
+
+    @Test
+    public void compareTo() {
+        ArrayList<Fraction> fractions = new ArrayList<>();
+        fractions.add(new Fraction(1,3));
+        fractions.add(new Fraction(1,8));
+        fractions.add(new Fraction(1,2));
+        fractions.add(new Fraction(1,6));
+        Collections.sort(fractions);
+
+        for(int i=0; i< fractions.size()-1; i++){
+            Assertions.assertEquals(fractions.get(i).compareTo(fractions.get(i+1)), -1);
+        }
     }
 
 

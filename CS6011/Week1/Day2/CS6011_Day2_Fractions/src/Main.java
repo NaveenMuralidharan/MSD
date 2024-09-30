@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,5 +28,13 @@ public class Main {
 
         System.out.println(f3.toDouble());
 
+        ArrayList<Fraction> fractions = new ArrayList<>();
+        fractions.add(new Fraction(1,8));
+        fractions.add(new Fraction(1,4));
+        fractions.add(new Fraction(1,2));
+        fractions.add(new Fraction(1,6));
+
+        Collections.sort(fractions);
+        System.out.println(fractions);
     }
 }

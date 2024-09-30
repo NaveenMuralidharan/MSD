@@ -1,4 +1,6 @@
-public class Fraction {
+
+
+public class Fraction implements Comparable<Fraction> {
 
         private long num;
         private long den;
@@ -12,6 +14,17 @@ public class Fraction {
                 gcd = temp;
             }
             return gcd;
+        }
+
+        @Override
+        public int compareTo(Fraction rhs){
+            if(this.toDouble() == rhs.toDouble()){
+                return 0;
+            } else if(this.toDouble() < rhs.toDouble()){
+                return -1;
+            } else {
+                return 1;
+            }
         }
 
         public void reduce(){
