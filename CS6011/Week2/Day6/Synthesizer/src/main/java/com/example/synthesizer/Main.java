@@ -14,12 +14,15 @@ public class Main {
         AudioComponent gen2 = new SineWave(493.883);
         AudioComponent gen3 = new SquareWave(440);
         AudioComponent gen4 = new WhiteNoise();
+        AudioComponent gen5 = new LinearRamp(50,10000);
+        AudioComponent gen6 = new VariableFrequency();
+        gen6.connectInput(gen5);
 //        AudioComponent volumeAdjuster = new VolumeAdjuster(0.1);
 //        volumeAdjuster.connectInput(gen);
         AudioComponent mixer = new Mixers();
         mixer.connectInput(gen1);
         mixer.connectInput(gen2);
-        AudioClip clip = gen4.getClip();
+        AudioClip clip = gen6.getClip();
 
         c.open( format16, clip.getData(), 0, clip.getData().length );
         System.out.println( "About to play..." );
