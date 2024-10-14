@@ -14,16 +14,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.*;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.*;
 //import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class SynthesizeApplication extends Application {
     private Clip c;
     private AnchorPane ap;
+    ArrayList<AudioComponentWidgetBase> widgets = new ArrayList<>();
+    private double currentY= 10;
+    public boolean speakerOn = false;
+
     @Override
     public void start(Stage stage) throws IOException {
         try {
@@ -34,6 +37,16 @@ public class SynthesizeApplication extends Application {
 
         ap = new AnchorPane();
         ap.setStyle("-fx-background-color: #D3D3D3");
+
+        Circle speakerButton = new Circle(30);
+        speakerButton.setFill(Color.LIGHTGREEN);
+        speakerButton.setStroke(Color.BLACK);
+        AnchorPane.setRightAnchor(speakerButton, 20.0);
+        AnchorPane.setBottomAnchor(speakerButton, 20.0);
+        speakerButton.setOnMouseClicked(e-> {
+            this.speakerOn = true;
+        });
+        ap.getChildren().add(speakerButton);
 
         VBox rightMenu = new VBox();
         rightMenu.setStyle("-fx-border-color: black");
@@ -56,18 +69,32 @@ public class SynthesizeApplication extends Application {
         bottomBox.setMinHeight(30);
 
         Button btn1 = new Button("Sine wave");
-        btn1.setOnAction(e -> ap.getChildren().add(sineWaveWidget()));
-//        btn1.setOnAction(e -> {
-//            try {
-//                playSound();
-//            } catch (LineUnavailableException ex) {
-//                ex.printStackTrace();
-//            }
-//        });
+        btn1.setOnAction(e-> createWidget(btn1.getText()));
+        Button btn2 = new Button("Square wave");
+        btn2.setOnAction(e-> createWidget(btn2.getText()));
+        Button btn3 = new Button("White noise");
+        btn3.setOnAction(e-> createWidget(btn3.getText()));
+        Button btn4 = new Button("Linear ramp");
+        btn4.setOnAction(e-> createWidget(btn4.getText()));
+        Button btn5 = new Button("Volume adjuster");
+        btn5.setOnAction(e-> createWidget(btn5.getText()));
+
         rightMenu.getChildren().add(btn1);
+        rightMenu.getChildren().add(btn2);
+        rightMenu.getChildren().add(btn3);
+        rightMenu.getChildren().add(btn4);
+        rightMenu.getChildren().add(btn5);
 
+        Button playButton = new Button("Play");
+        playButton.setOnAction(e-> {
+            try {
+                playMixer();
+            } catch (LineUnavailableException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
-
+        bottomBox.getChildren().add(playButton);
         bp.setTop(titleBox);
         bp.setRight(rightMenu);
         bp.setLeft(leftMenu);
@@ -84,72 +111,113 @@ public class SynthesizeApplication extends Application {
     }
     }
 
-    public HBox sineWaveWidget(){
-        HBox hBox = new HBox();
-//        hBox.setMinSize(10,10);
-        hBox.setStyle("-fx-background-color: #abacf7");
-        hBox.setPadding(new Insets(5));
-
-        VBox vBox1 = new VBox();
-        vBox1.setStyle("-fx-border-color: black");
-        vBox1.setPadding(new Insets(5));
-        vBox1.setSpacing(5);
-        HBox hBox1_1 = new HBox();
-        HBox hBox1_2 = new HBox();
-        Label sineLabel = new Label("Sine Wave");
-        hBox1_1.getChildren().add(sineLabel);
-        Slider slider = new Slider(20,20000,440);
-        hBox1_2.getChildren().add(slider);
-        vBox1.getChildren().add(hBox1_1);
-        vBox1.getChildren().add(hBox1_2);
-
-        VBox vBox2 = new VBox();
-        vBox2.setPadding(new Insets(5));
-        vBox2.setSpacing(5);
-        HBox hBox2_1 = new HBox();
-        Button closeButton = new Button("X");
-        closeButton.setOnAction(e -> ap.getChildren().remove(0));
-        hBox2_1.getChildren().add(closeButton);
-        HBox hBox2_2 = new HBox();
-        Button playButton = new Button();
-        playButton.setShape(new Circle(10));
-        playButton.setOnAction(e-> {
-            try {
-                playSound(slider.getValue());
-            } catch (LineUnavailableException ex) {
-                ex.printStackTrace();
-            }
-        });
-        hBox2_2.getChildren().add(playButton);
-        vBox2.getChildren().add(hBox2_1);
-        vBox2.getChildren().add(hBox2_2);
-
-        hBox.getChildren().add(vBox1);
-        hBox.getChildren().add(vBox2);
-
-        return hBox;
-    }
-
-    public void playSound(double frequency) throws LineUnavailableException {
-        System.out.println("clicked");
-//        Clip c = AudioSystem.getClip();
-//        AudioFormat format16 = new AudioFormat( 44100, 16, 1, true, false );
-
-        AudioComponent gen1 = new SineWave(frequency);
-        AudioClip clip = gen1.getClip();
-
-        c.open( c.getFormat(), clip.getData(), 0, clip.getData().length );
-        System.out.println( "About to play..." );
-        c.start(); // Plays it.
-        c.loop( 2 );
-
-        while( c.getFramePosition() < AudioClip.sampleRate || c.isActive() || c.isRunning() ){
-            // Do nothing while we wait for the note to play.
+    public void createWidget(String buttonText){
+        if(buttonText.equals("Sine wave")){
+            AudioComponentWidgetBase widget = new SineWaveWidget(ap, buttonText, this);
+            widgets.add(widget);
+            widget.widget.setLayoutX(10);
+            widget.widget.setLayoutY(currentY);
+            currentY += 8 * (widget.widget.getHeight() + 10);
+        }
+        else if(buttonText.equals("Square wave")){
+            AudioComponentWidgetBase widget = new SquareWaveWidget(ap, buttonText, this);
+            widgets.add(widget);
+            widget.widget.setLayoutX(10);
+            widget.widget.setLayoutY(currentY);
+            currentY += 8 * (widget.widget.getHeight() + 10);
+        }
+        else if(buttonText.equals("White noise")){
+            AudioComponentWidgetBase widget = new WhiteNoiseWidget(ap, buttonText, this);
+            widgets.add(widget);
+            widget.widget.setLayoutX(10);
+            widget.widget.setLayoutY(currentY);
+            currentY += 8 * (widget.widget.getHeight() + 10);
+        }
+        else if(buttonText.equals("Linear ramp")){
+            AudioComponentWidgetBase widget = new LinearRampWidget(ap, buttonText, this);
+            widgets.add(widget);
+            widget.widget.setLayoutX(10);
+            widget.widget.setLayoutY(currentY);
+            currentY += 8 * (widget.widget.getHeight() + 10);
+        }
+        else if(buttonText.equals("Volume adjuster")){
+            AudioComponentWidgetBase widget = new VolumeAdjusterWidget(ap, buttonText, this);
+            widgets.add(widget);
+            widget.widget.setLayoutX(10);
+            widget.widget.setLayoutY(currentY);
+            currentY += 8 * (widget.widget.getHeight() + 10);
         }
 
-        System.out.println( "Done." );
-        c.close();
+    }
 
+    public void playMixer() throws LineUnavailableException {
+        System.out.println("play button clicked");
+        boolean volumeExists = false;
+        int volumeWidgetIndex=0;
+        AudioComponent mixer = new Mixers();
+
+        if(!widgets.isEmpty() && this.speakerOn) {
+//            for (int i=0; i<widgets.size(); i++) {
+//
+//                if(widgets.get(i).isConnected && widgets.get(i).isVolumeAdjuster){
+//                    volumeExists = true;
+//                    volumeWidgetIndex = i;
+//                }
+//
+//                if(widgets.get(i).isConnected && !widgets.get(i).isVolumeAdjuster){
+//                    mixer.connectInput(widgets.get(i).getComponent());
+//                }
+//            }
+//            //if volume controller exists, pass mixer through it, else get clip from mixer
+//            AudioClip clip;
+//            if(volumeExists){
+//                AudioComponent volumeAdjuster = widgets.get(volumeWidgetIndex).getComponent();
+//                volumeAdjuster.connectInput(mixer);
+//                clip = volumeAdjuster.getClip();
+//            } else {
+//                clip = mixer.getClip();
+//            }
+            AudioComponent volumeAdjuster = null;
+
+            // Check for connected widgets and separate the volume adjuster
+            for (AudioComponentWidgetBase widget : widgets) {
+                if (widget.isConnected) {
+                    if (widget.isVolumeAdjuster) {
+                        volumeAdjuster = widget.getComponent(); // Save the volume adjuster
+                    } else {
+                        mixer.connectInput(widget.getComponent()); // Connect other widgets
+                    }
+                }
+            }
+
+            // If a volume adjuster exists, connect the mixer to it
+            if (volumeAdjuster != null) {
+                volumeAdjuster.connectInput(mixer);
+            }
+            AudioClip clip = (volumeAdjuster != null) ? volumeAdjuster.getClip() : mixer.getClip();
+
+            c.open(c.getFormat(), clip.getData(), 0, clip.getData().length);
+            System.out.println("About to play...");
+
+            c.addLineListener(new LineListener() {
+                @Override
+                public void update(LineEvent event) {
+                    if(event.getType() == LineEvent.Type.STOP){
+                        System.out.println("Playback finished.");
+                        c.close();
+                    }
+                }
+            });
+            c.start();
+
+        }
+    }
+
+    public void removeWidget(AudioComponentWidgetBase widget){
+        System.out.println("close widget");
+        widgets.remove(widget);
+        Node widgetNode = widget.widget;
+        ap.getChildren().remove(widgetNode);
     }
 
     public static void main(String[] args) {
