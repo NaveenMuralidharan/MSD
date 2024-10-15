@@ -63,80 +63,80 @@ public class AudioComponentWidgetBase {
         connectButton = new Button();
         connectButton.setShape(new Circle(10));
         connectButton.setStyle("-fx-background-color: BLACK");
-//        connectButton.setOnAction(e -> {
-//            this.isConnected = !this.isConnected;
-//            if(this.isConnected){
-//                connectButton.setStyle("-fx-background-color: RED");
-//            } else {
-//                connectButton.setStyle("-fx-background-color: BLACK");
+        connectButton.setOnAction(e -> {
+            this.isConnected = !this.isConnected;
+            if(this.isConnected){
+                connectButton.setStyle("-fx-background-color: RED");
+            } else {
+                connectButton.setStyle("-fx-background-color: BLACK");
+            }
+        });
+//        connectButton.setOnMousePressed(e-> {
+//
+//            if(this.connectedLine != null){
+//                ap.getChildren().remove(this.connectedLine);
+//            }
+//            this.connectedLine = new Line(
+//                    widget.getLayoutX() + widget.getWidth() / 2,
+//                    widget.getLayoutY() + widget.getHeight() /2,
+//                    e.getSceneX(), e.getSceneY()
+//            );
+//            ap.getChildren().add(this.connectedLine);
+//        });
+//
+//        connectButton.setOnMouseDragged(e->{
+//            if(this.connectedLine != null){
+//                this.connectedLine.setEndX(e.getSceneX());
+//                this.connectedLine.setEndY(e.getSceneY());
 //            }
 //        });
-        connectButton.setOnMousePressed(e-> {
-
-            if(this.connectedLine != null){
-                ap.getChildren().remove(this.connectedLine);
-            }
-            this.connectedLine = new Line(
-                    widget.getLayoutX() + widget.getWidth() / 2,
-                    widget.getLayoutY() + widget.getHeight() /2,
-                    e.getSceneX(), e.getSceneY()
-            );
-            ap.getChildren().add(this.connectedLine);
-        });
-
-        connectButton.setOnMouseDragged(e->{
-            if(this.connectedLine != null){
-                this.connectedLine.setEndX(e.getSceneX());
-                this.connectedLine.setEndY(e.getSceneY());
-            }
-        });
-
-        connectButton.setOnMouseReleased(e-> {
-
-            //check for connection with speaker
-            boolean connectedToSpeaker = e.getSceneX() >= (ap.getWidth() -60) &&
-                    e.getSceneY() >= (ap.getHeight() - 60);
-            if(connectedToSpeaker){
-                this.isConnected = true;
-                app.speakerOn = true;
-            } else {
-                for(AudioComponentWidgetBase otherWidget: app.widgets){
-                    System.out.println(e.getSceneX());
-                    System.out.println(e.getSceneY());
-                    System.out.println(otherWidget.getConnectButtonCenterX());
-                    System.out.println(otherWidget.getConnectButtonCenterY());
-                    if(otherWidget != this){
-                        double distance = calculateDistance(
-                                this.connectedLine.getEndX(),
-                                this.connectedLine.getEndY(),
-                                otherWidget.getConnectButtonCenterX(),
-                                otherWidget.getConnectButtonCenterY()
-                        );
-                        if (distance < 20) {
-                            System.out.println("connected");
-                            this.isConnected = true;
-                            otherWidget.isConnected = true;
-                            Line line = new Line(
-                                    getConnectButtonCenterX(),
-                                    getConnectButtonCenterY(),
-                                    otherWidget.getConnectButtonCenterX(),
-                                    otherWidget.getConnectButtonCenterY()
-                            );
-                            line.setStroke(Color.RED); // Set line color
-                            ap.getChildren().add(line); // Keep the line visible
-                            break;
-
-                        }
-
-                    }
-                }
-            }
-            // Clean up connection line
-            if (this.connectedLine != null) {
-                ap.getChildren().remove(this.connectedLine);
-                this.connectedLine = null; // Reset connection line
-            }
-        });
+//
+//        connectButton.setOnMouseReleased(e-> {
+//
+//            //check for connection with speaker
+//            boolean connectedToSpeaker = e.getSceneX() >= (ap.getWidth() -60) &&
+//                    e.getSceneY() >= (ap.getHeight() - 60);
+//            if(connectedToSpeaker){
+//                this.isConnected = true;
+//                app.speakerOn = true;
+//            } else {
+//                for(AudioComponentWidgetBase otherWidget: app.widgets){
+//                    System.out.println(e.getSceneX());
+//                    System.out.println(e.getSceneY());
+//                    System.out.println(otherWidget.getConnectButtonCenterX());
+//                    System.out.println(otherWidget.getConnectButtonCenterY());
+//                    if(otherWidget != this){
+//                        double distance = calculateDistance(
+//                                this.connectedLine.getEndX(),
+//                                this.connectedLine.getEndY(),
+//                                otherWidget.getConnectButtonCenterX(),
+//                                otherWidget.getConnectButtonCenterY()
+//                        );
+//                        if (distance < 20) {
+//                            System.out.println("connected");
+//                            this.isConnected = true;
+//                            otherWidget.isConnected = true;
+//                            Line line = new Line(
+//                                    getConnectButtonCenterX(),
+//                                    getConnectButtonCenterY(),
+//                                    otherWidget.getConnectButtonCenterX(),
+//                                    otherWidget.getConnectButtonCenterY()
+//                            );
+//                            line.setStroke(Color.RED); // Set line color
+//                            ap.getChildren().add(line); // Keep the line visible
+//                            break;
+//
+//                        }
+//
+//                    }
+//                }
+//            }
+//            // Clean up connection line
+//            if (this.connectedLine != null) {
+//                ap.getChildren().remove(this.connectedLine);
+//                this.connectedLine = null; // Reset connection line
+//            }
+//        });
 
 
         hBox2_2.getChildren().add(connectButton);

@@ -26,6 +26,7 @@ public class SynthesizeApplication extends Application {
     ArrayList<AudioComponentWidgetBase> widgets = new ArrayList<>();
     private double currentY= 10;
     public boolean speakerOn = false;
+    private Circle speakerButton;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -38,13 +39,15 @@ public class SynthesizeApplication extends Application {
         ap = new AnchorPane();
         ap.setStyle("-fx-background-color: #D3D3D3");
 
-        Circle speakerButton = new Circle(30);
-        speakerButton.setFill(Color.LIGHTGREEN);
-        speakerButton.setStroke(Color.BLACK);
+        this.speakerButton = new Circle(30);
+        this.speakerButton.setFill(Color.RED);
+        this.speakerButton.setStroke(Color.BLACK);
         AnchorPane.setRightAnchor(speakerButton, 20.0);
         AnchorPane.setBottomAnchor(speakerButton, 20.0);
-        speakerButton.setOnMouseClicked(e-> {
-            this.speakerOn = true;
+        this.speakerButton.setOnMouseClicked(e-> {
+//            this.speakerOn = true;
+//            this.speakerButton.setFill(Color.LIGHTGREEN);
+            this.toggleSpeaker();
         });
         ap.getChildren().add(speakerButton);
 
@@ -109,6 +112,16 @@ public class SynthesizeApplication extends Application {
             System.out.println("Audio system error");
             e.printStackTrace();
     }
+    }
+
+    public void toggleSpeaker(){
+        if(this.speakerOn){
+            this.speakerOn = false;
+            this.speakerButton.setFill(Color.RED);
+        } else {
+            this.speakerOn = true;
+            this.speakerButton.setFill(Color.LIGHTGREEN);
+        }
     }
 
     public void createWidget(String buttonText){
@@ -218,6 +231,9 @@ public class SynthesizeApplication extends Application {
         widgets.remove(widget);
         Node widgetNode = widget.widget;
         ap.getChildren().remove(widgetNode);
+        if(widgets.isEmpty()){
+            this.toggleSpeaker();
+        }
     }
 
     public static void main(String[] args) {
