@@ -9,8 +9,8 @@ public class SineWaveWidget extends AudioComponentWidgetBase{
 
     public Slider widgetSlider;
 
-    public SineWaveWidget(Pane ap, String type, SynthesizeApplication app) {
-        super(ap, type, app);
+    public SineWaveWidget(Pane ap, String type, SynthesizeApplication app, boolean hasInput) {
+        super(ap, type, app, hasInput);
         Label sineLabel = new Label(type);
         titleBox.getChildren().add(sineLabel);
         this.widgetSlider = new Slider(20,20000,440);

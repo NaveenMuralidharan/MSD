@@ -126,35 +126,35 @@ public class SynthesizeApplication extends Application {
 
     public void createWidget(String buttonText){
         if(buttonText.equals("Sine wave")){
-            AudioComponentWidgetBase widget = new SineWaveWidget(ap, buttonText, this);
+            AudioComponentWidgetBase widget = new SineWaveWidget(ap, buttonText, this, false);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);
             currentY += 8 * (widget.widget.getHeight() + 10);
         }
         else if(buttonText.equals("Square wave")){
-            AudioComponentWidgetBase widget = new SquareWaveWidget(ap, buttonText, this);
+            AudioComponentWidgetBase widget = new SquareWaveWidget(ap, buttonText, this, false);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);
             currentY += 8 * (widget.widget.getHeight() + 10);
         }
         else if(buttonText.equals("White noise")){
-            AudioComponentWidgetBase widget = new WhiteNoiseWidget(ap, buttonText, this);
+            AudioComponentWidgetBase widget = new WhiteNoiseWidget(ap, buttonText, this, false);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);
             currentY += 8 * (widget.widget.getHeight() + 10);
         }
         else if(buttonText.equals("Linear ramp")){
-            AudioComponentWidgetBase widget = new LinearRampWidget(ap, buttonText, this);
+            AudioComponentWidgetBase widget = new LinearRampWidget(ap, buttonText, this, false);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);
             currentY += 8 * (widget.widget.getHeight() + 10);
         }
         else if(buttonText.equals("Volume adjuster")){
-            AudioComponentWidgetBase widget = new VolumeAdjusterWidget(ap, buttonText, this);
+            AudioComponentWidgetBase widget = new VolumeAdjusterWidget(ap, buttonText, this, true);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);

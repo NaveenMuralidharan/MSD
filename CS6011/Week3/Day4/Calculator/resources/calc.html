@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        textarea { resize: none; white-space; nowrap; overflow-x: hidden; }
+    </style>
+
+
+</head>
+<body>
+    Calculator
+<!--https://ocalhost:8080/calculate?x=4&y=5-->
+
+    <ul>
+        <li>
+            <label>X value:</label>
+            <textarea id="xValue"></textarea>
+        </li>
+        <li>
+            <label>Y value:</label>
+            <textarea id="yValue"></textarea>
+        </li>
+        <button>Add Numbers</button>
+        <li>
+            <label>Result:</label>
+            <textarea id="result"></textarea>
+        </li>
+        <li>
+            <label>Web socket result:</label>
+            <textarea id="wsTA"></textarea>
+        </li>
+    </ul>
+
+
+
+
+<script type="text/javascript" src="calc.js"></script>
+</body>
+</html>

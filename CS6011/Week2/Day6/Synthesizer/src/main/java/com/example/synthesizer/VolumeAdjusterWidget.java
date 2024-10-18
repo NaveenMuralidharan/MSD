@@ -7,8 +7,8 @@ import javafx.scene.layout.Pane;
 public class VolumeAdjusterWidget extends AudioComponentWidgetBase{
     public Slider widgetSlider;
 
-    public VolumeAdjusterWidget(Pane ap, String type, SynthesizeApplication app){
-        super(ap,type,app);
+    public VolumeAdjusterWidget(Pane ap, String type, SynthesizeApplication app, boolean hasInput){
+        super(ap,type,app, hasInput);
         Label volumeLabel = new Label(type);
         titleBox.getChildren().add(volumeLabel);
         this.widgetSlider = new Slider(0,1,0.5);

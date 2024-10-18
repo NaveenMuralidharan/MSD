@@ -29,7 +29,7 @@ public class AudioComponentWidgetBase {
     protected Line connectedLine;
     protected Button connectButton;
 
-    public AudioComponentWidgetBase(Pane ap, String type, SynthesizeApplication app){
+    public AudioComponentWidgetBase(Pane ap, String type, SynthesizeApplication app, boolean hasInput){
         this.app = app;
         HBox hBox = new HBox();
         hBox.setStyle("-fx-background-color: #abacf7");
@@ -41,12 +41,17 @@ public class AudioComponentWidgetBase {
         vBox1.setSpacing(5);
         HBox hBox1_1 = new HBox();
         HBox hBox1_2 = new HBox();
-//        Label sineLabel = new Label("Sine Wave");
-//        hBox1_1.getChildren().add(sineLabel);
+
         this.titleBox = hBox1_1;
         this.sliderBox = hBox1_2;
-//        Slider slider = new Slider(20,20000,440);
-//        hBox1_2.getChildren().add(slider);
+        //add input circle if needed,
+        if(hasInput){
+            Button inputButton = new Button();
+            inputButton.setShape(new Circle(10));
+            inputButton.setStyle("-fx-background-color: GREEN");
+            this.sliderBox.getChildren().add(inputButton);
+        }
+
         vBox1.getChildren().add(hBox1_1);
         vBox1.getChildren().add(hBox1_2);
 
@@ -187,5 +192,6 @@ public class AudioComponentWidgetBase {
     public void closeWidget(){
         app.removeWidget(this);
     }
+
 
 }

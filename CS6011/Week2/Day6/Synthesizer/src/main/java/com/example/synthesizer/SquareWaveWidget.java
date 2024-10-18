@@ -9,8 +9,8 @@ public class SquareWaveWidget extends AudioComponentWidgetBase{
 
     public Slider widgetSlider;
 
-    public SquareWaveWidget(Pane ap, String type, SynthesizeApplication app){
-        super(ap, type, app);
+    public SquareWaveWidget(Pane ap, String type, SynthesizeApplication app, boolean hasInput){
+        super(ap, type, app, hasInput);
         Label squareLabel = new Label("Square wave");
         titleBox.getChildren().add(squareLabel);
         this.widgetSlider = new Slider(20,20000,440);

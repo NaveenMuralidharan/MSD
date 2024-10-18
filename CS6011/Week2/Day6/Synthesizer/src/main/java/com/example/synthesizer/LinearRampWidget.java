@@ -9,8 +9,8 @@ public class LinearRampWidget extends AudioComponentWidgetBase{
     public TextField start;
     public TextField stop;
 
-    public LinearRampWidget(Pane ap, String type, SynthesizeApplication app){
-        super(ap, type, app);
+    public LinearRampWidget(Pane ap, String type, SynthesizeApplication app, boolean hasInput){
+        super(ap, type, app, hasInput);
         Label whiteNoiseLabel = new Label("Linear Ramp");
         titleBox.getChildren().add(whiteNoiseLabel);
         ap.getChildren().add(widget);
