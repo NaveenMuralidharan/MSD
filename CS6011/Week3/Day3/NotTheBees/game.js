@@ -69,9 +69,10 @@ function handleMove(){
 let honey = {x: 100, y:100};
 honey.img = new Image();
 honey.img.src = "honey2.jpg";
-//honey.img.onload = function(){
-//    context.drawImage(honey.img, honey.x, honey.y);
-//}
+honey.img.onload = function () {
+    mainGameLoop(); // Start the game loop after honey is loaded
+};
+
 
 function draw(){
         context.clearRect(0,0,1000,1000);
@@ -104,6 +105,6 @@ function mainGameLoop(){
     }
 }
 
-mainGameLoop();
+//mainGameLoop();
 
 canvas.onmousemove = handleMouseMove;
