@@ -28,6 +28,8 @@ public class AudioComponentWidgetBase {
     protected boolean isVolumeAdjuster = false;
     protected Line connectedLine;
     protected Button connectButton;
+    protected Circle outputCircle;
+    private boolean isDraggingOutputCircle = false;
 
     public AudioComponentWidgetBase(Pane ap, String type, SynthesizeApplication app, boolean hasInput){
         this.app = app;
@@ -64,10 +66,56 @@ public class AudioComponentWidgetBase {
         closeButton.setOnAction(e->closeWidget());
         hBox2_1.getChildren().add(closeButton);
         HBox hBox2_2 = new HBox();
+        //use circle as input and output button
+        //on mouse released, get seceneX and Y
+        //for each widget input circle, in .contains method, check if (widget circle.sceneToLocal(getsceneX, getsceneY))
+        //then get rid of temp line
+        //connection line class - stoires input widget, output widget, line itself, point2D putput and input coordinates
+        //updateline() sets outputcoordinates = out.put.getcircle.localtoscene(output circle.getcenterx, getgenter y)
+        //'' sets input coordinates the same way
+        //line setstart x -outputcoordinates.getX(), setstartY,
+        //
 
-        connectButton = new Button();
-        connectButton.setShape(new Circle(10));
-        connectButton.setStyle("-fx-background-color: BLACK");
+        //setup circle for output
+        this.outputCircle = new Circle(10);
+        hBox2_2.getChildren().add(this.outputCircle);
+        //when mouse clicks on output circle, get mouse x,y and print if circle contains mouse x,y
+        // Initialize line
+        this.connectedLine = new Line();
+        this.connectedLine.setStroke(Color.RED); // Set the line color
+        ap.getChildren().add(this.connectedLine); // Add the line to the Pane
+
+        this.outputCircle.setOnMousePressed(e -> {
+            this.isDraggingOutputCircle = true;
+            // Set the start point of the line to the center of the output circle
+            double circleCenterX = this.outputCircle.localToScene(this.outputCircle.getCenterX(), this.outputCircle.getCenterY()).getX();
+            double circleCenterY = this.outputCircle.localToScene(this.outputCircle.getCenterX(), this.outputCircle.getCenterY()).getY();
+
+            System.out.println(circleCenterX);
+            System.out.println(e.getSceneX());
+//            connectedLine.setStartX(circleCenterX);
+//            connectedLine.setStartY(circleCenterY);
+//            connectedLine.setEndX(circleCenterX); // Initial end point is the same as the start point
+//            connectedLine.setEndY(circleCenterY); // Initial end point is the same as the start point
+        });
+
+        this.outputCircle.setOnMouseDragged(e -> {
+            // Update the end point of the line to follow the mouse
+//            connectedLine.setEndX(e.getSceneX());
+//            connectedLine.setEndY(e.getSceneY());
+        });
+
+        this.outputCircle.setOnMouseReleased(e-> {
+            for(AudioComponentWidgetBase otherWidget: app.widgets){
+                double circleCenterX = otherWidget.outputCircle.localToScene(otherWidget.outputCircle.getCenterX(), otherWidget.outputCircle.getCenterY()).getX();
+                System.out.println(circleCenterX);
+                System.out.println(e.getSceneX());
+
+            }
+        });
+//        connectButton = new Button();
+//        connectButton.setShape(new Circle(10));
+//        connectButton.setStyle("-fx-background-color: BLACK");
 //        connectButton.setOnAction(e -> {
 //            this.isConnected = !this.isConnected;
 //            if(this.isConnected){
@@ -76,75 +124,75 @@ public class AudioComponentWidgetBase {
 //                connectButton.setStyle("-fx-background-color: BLACK");
 //            }
 //        });
-        connectButton.setOnMousePressed(e-> {
-
-            if(this.connectedLine != null){
-                ap.getChildren().remove(this.connectedLine);
-            }
-            this.connectedLine = new Line(
-                    widget.getLayoutX() + widget.getWidth()/1.1,
-                    widget.getLayoutY() + widget.getHeight()/1.1,
-                    e.getSceneX(), e.getSceneY()
-            );
-            ap.getChildren().add(this.connectedLine);
-        });
-
-        connectButton.setOnMouseDragged(e->{
-            if(this.connectedLine != null){
-                this.connectedLine.setEndX(e.getSceneX());
-                this.connectedLine.setEndY(e.getSceneY());
-            }
-        });
-
-        connectButton.setOnMouseReleased(e-> {
-
-            //check for connection with speaker
-            boolean connectedToSpeaker = e.getSceneX() >= (ap.getWidth() -60) &&
-                    e.getSceneY() >= (ap.getHeight() - 60);
-            if(connectedToSpeaker){
-                this.isConnected = true;
-                app.speakerOn = true;
-            } else {
-                for(AudioComponentWidgetBase otherWidget: app.widgets){
-                    System.out.println(e.getSceneX());
-                    System.out.println(e.getSceneY());
-                    System.out.println(otherWidget.getConnectButtonCenterX());
-                    System.out.println(otherWidget.getConnectButtonCenterY());
-                    if(otherWidget != this){
-                        double distance = calculateDistance(
-                                this.connectedLine.getEndX(),
-                                this.connectedLine.getEndY(),
-                                otherWidget.getConnectButtonCenterX(),
-                                otherWidget.getConnectButtonCenterY()
-                        );
-                        if (distance < 20) {
-                            System.out.println("connected");
-                            this.isConnected = true;
-                            otherWidget.isConnected = true;
-                            Line line = new Line(
-                                    getConnectButtonCenterX(),
-                                    getConnectButtonCenterY(),
-                                    otherWidget.getConnectButtonCenterX(),
-                                    otherWidget.getConnectButtonCenterY()
-                            );
-                            line.setStroke(Color.RED); // Set line color
-                            ap.getChildren().add(line); // Keep the line visible
-                            break;
-
-                        }
-
-                    }
-                }
-            }
-            // Clean up connection line
-            if (this.connectedLine != null) {
-                ap.getChildren().remove(this.connectedLine);
-                this.connectedLine = null; // Reset connection line
-            }
-        });
-
-
-        hBox2_2.getChildren().add(connectButton);
+//        connectButton.setOnMousePressed(e-> {
+//
+//            if(this.connectedLine != null){
+//                ap.getChildren().remove(this.connectedLine);
+//            }
+//            this.connectedLine = new Line(
+//                    widget.getLayoutX() + widget.getWidth()/1.1,
+//                    widget.getLayoutY() + widget.getHeight()/1.1,
+//                    e.getSceneX(), e.getSceneY()
+//            );
+//            ap.getChildren().add(this.connectedLine);
+//        });
+//
+//        connectButton.setOnMouseDragged(e->{
+//            if(this.connectedLine != null){
+//                this.connectedLine.setEndX(e.getSceneX());
+//                this.connectedLine.setEndY(e.getSceneY());
+//            }
+//        });
+//
+//        connectButton.setOnMouseReleased(e-> {
+//
+//            //check for connection with speaker
+//            boolean connectedToSpeaker = e.getSceneX() >= (ap.getWidth() -60) &&
+//                    e.getSceneY() >= (ap.getHeight() - 60);
+//            if(connectedToSpeaker){
+//                this.isConnected = true;
+//                app.speakerOn = true;
+//            } else {
+//                for(AudioComponentWidgetBase otherWidget: app.widgets){
+//                    System.out.println(e.getSceneX());
+//                    System.out.println(e.getSceneY());
+//                    System.out.println(otherWidget.getConnectButtonCenterX());
+//                    System.out.println(otherWidget.getConnectButtonCenterY());
+//                    if(otherWidget != this){
+//                        double distance = calculateDistance(
+//                                this.connectedLine.getEndX(),
+//                                this.connectedLine.getEndY(),
+//                                otherWidget.getConnectButtonCenterX(),
+//                                otherWidget.getConnectButtonCenterY()
+//                        );
+//                        if (distance < 20) {
+//                            System.out.println("connected");
+//                            this.isConnected = true;
+//                            otherWidget.isConnected = true;
+//                            Line line = new Line(
+//                                    getConnectButtonCenterX(),
+//                                    getConnectButtonCenterY(),
+//                                    otherWidget.getConnectButtonCenterX(),
+//                                    otherWidget.getConnectButtonCenterY()
+//                            );
+//                            line.setStroke(Color.RED); // Set line color
+//                            ap.getChildren().add(line); // Keep the line visible
+//                            break;
+//
+//                        }
+//
+//                    }
+//                }
+//            }
+//            // Clean up connection line
+//            if (this.connectedLine != null) {
+//                ap.getChildren().remove(this.connectedLine);
+//                this.connectedLine = null; // Reset connection line
+//            }
+//        });
+//
+//
+//        hBox2_2.getChildren().add(connectButton);
         vBox2.getChildren().add(hBox2_1);
         vBox2.getChildren().add(hBox2_2);
 
@@ -166,10 +214,14 @@ public class AudioComponentWidgetBase {
         });
 
         widget.setOnMouseDragged(e->{
+            if(isDraggingOutputCircle){
+                return;
+            } else {
             double offsetX = e.getSceneX() - mouseX;
             double offsetY = e.getSceneY() - mouseY;
             widget.setLayoutX(initialX + offsetX);
             widget.setLayoutY(initialY + offsetY);
+            }
         });
     }
 

@@ -81,12 +81,15 @@ public class SynthesizeApplication extends Application {
         btn4.setOnAction(e-> createWidget(btn4.getText()));
         Button btn5 = new Button("Volume adjuster");
         btn5.setOnAction(e-> createWidget(btn5.getText()));
+        Button btn6 = new Button("trial");
+        btn5.setOnAction(e-> createWidget(btn6.getText()));
 
         rightMenu.getChildren().add(btn1);
         rightMenu.getChildren().add(btn2);
         rightMenu.getChildren().add(btn3);
         rightMenu.getChildren().add(btn4);
         rightMenu.getChildren().add(btn5);
+        rightMenu.getChildren().add(btn6);
 
         Button playButton = new Button("Play");
         playButton.setOnAction(e-> {
@@ -159,6 +162,9 @@ public class SynthesizeApplication extends Application {
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);
             currentY += 8 * (widget.widget.getHeight() + 10);
+        }
+        else if(buttonText.equals("Trial")){
+            trailAudioWidget widget = new trialSineWave(ap, buttonText);
         }
 
     }
