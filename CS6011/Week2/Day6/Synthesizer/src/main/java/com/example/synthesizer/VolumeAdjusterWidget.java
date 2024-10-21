@@ -15,6 +15,7 @@ public class VolumeAdjusterWidget extends AudioComponentWidgetBase{
         sliderBox.getChildren().add(widgetSlider);
         ap.getChildren().add(widget);
         isVolumeAdjuster = true;
+        System.out.println("vol adjuster created");
     }
 
     @Override

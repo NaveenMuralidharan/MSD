@@ -26,7 +26,7 @@ public class SynthesizeApplication extends Application {
     ArrayList<AudioComponentWidgetBase> widgets = new ArrayList<>();
     private double currentY= 10;
     public boolean speakerOn = false;
-    private Circle speakerButton;
+    public Circle speakerButton;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -81,15 +81,13 @@ public class SynthesizeApplication extends Application {
         btn4.setOnAction(e-> createWidget(btn4.getText()));
         Button btn5 = new Button("Volume adjuster");
         btn5.setOnAction(e-> createWidget(btn5.getText()));
-        Button btn6 = new Button("trial");
-        btn5.setOnAction(e-> createWidget(btn6.getText()));
 
         rightMenu.getChildren().add(btn1);
         rightMenu.getChildren().add(btn2);
         rightMenu.getChildren().add(btn3);
         rightMenu.getChildren().add(btn4);
         rightMenu.getChildren().add(btn5);
-        rightMenu.getChildren().add(btn6);
+
 
         Button playButton = new Button("Play");
         playButton.setOnAction(e-> {
@@ -101,9 +99,9 @@ public class SynthesizeApplication extends Application {
         });
 
         bottomBox.getChildren().add(playButton);
-        bp.setTop(titleBox);
+//        bp.setTop(titleBox);
         bp.setRight(rightMenu);
-        bp.setLeft(leftMenu);
+//        bp.setLeft(leftMenu);
         bp.setBottom(bottomBox);
         bp.setCenter(ap);
 
@@ -150,6 +148,7 @@ public class SynthesizeApplication extends Application {
             currentY += 8 * (widget.widget.getHeight() + 10);
         }
         else if(buttonText.equals("Linear ramp")){
+            System.out.println("Linear ramp button");
             AudioComponentWidgetBase widget = new LinearRampWidget(ap, buttonText, this, false);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
@@ -157,14 +156,12 @@ public class SynthesizeApplication extends Application {
             currentY += 8 * (widget.widget.getHeight() + 10);
         }
         else if(buttonText.equals("Volume adjuster")){
+            System.out.println("Vol adjuster button");
             AudioComponentWidgetBase widget = new VolumeAdjusterWidget(ap, buttonText, this, true);
             widgets.add(widget);
             widget.widget.setLayoutX(10);
             widget.widget.setLayoutY(currentY);
             currentY += 8 * (widget.widget.getHeight() + 10);
-        }
-        else if(buttonText.equals("Trial")){
-            trailAudioWidget widget = new trialSineWave(ap, buttonText);
         }
 
     }
