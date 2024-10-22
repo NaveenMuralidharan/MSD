@@ -56,11 +56,7 @@ function handleMove(){
                             } else {
                                 bee.y -= bee.speed;
                             }
-
-
              }
-
-
     });
 
 }

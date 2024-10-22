@@ -205,6 +205,7 @@ public class AudioComponentWidgetBase {
             double offsetY = e.getSceneY() - mouseY;
             widget.setLayoutX(initialX + offsetX);
             widget.setLayoutY(initialY + offsetY);
+
             }
         });
     }
