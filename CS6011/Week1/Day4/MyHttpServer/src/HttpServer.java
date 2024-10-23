@@ -30,7 +30,8 @@ public class HttpServer {
                         String[] cssArr = fileName.split("[.]");
                         fileType = cssArr[1];
                     }
-
+                    System.out.println("path is "+ path);
+                    System.out.println("fileType is "+ fileType);
                     HttpResponse response = new HttpResponse(path, fileType);
                     byte[] responseBytes = response.getResponse();
                     socket.getOutputStream().write(responseBytes);
