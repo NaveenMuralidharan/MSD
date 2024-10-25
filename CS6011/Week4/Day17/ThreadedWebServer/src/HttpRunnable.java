@@ -1,48 +1,79 @@
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
 
 public class HttpRunnable implements Runnable{
 
+    String fileName;
+    String fileType;
     Socket socket;
+    boolean isWebSocketRequest = false;
+    String webSocketKey;
 
     public HttpRunnable(Socket socket){
 
         this.socket = socket;
+
     }
 
     @Override
     public void run() {
-//        InputStream input = null;
-        try (InputStream input = socket.getInputStream();
-                Scanner scanner = new Scanner(input))
-        {
-            String[] requestArr = scanner.nextLine().split("[/]");
-            String fileName = requestArr[1].substring(0, requestArr[1].length() - 5);
 
-            String fileType;
-            String path = "./src/resources/" + fileName;
-            if (fileName.isEmpty()) {
-                path = "./src/resources/index.html";
-                fileType = "html";
-            } else {
-                String[] cssArr = fileName.split("[.]");
-                fileType = cssArr[1];
+        try (InputStream input = socket.getInputStream();
+                Scanner scanner = new Scanner(input)
+        )
+
+        {
+            OutputStream output = socket.getOutputStream();
+
+
+            Map<String, String> headers= new HashMap<>();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            String firstLine = reader.readLine();
+            String[] requestArr = firstLine.split("[/]");
+            this.fileName = requestArr[1].substring(0, requestArr[1].length() - 5);
+            String line;
+            while((line = reader.readLine()) != null && !line.isEmpty()){
+                String[] parts = line.split(": ", 2);
+                if(parts.length == 2){
+                    headers.put(parts[0], parts[1]);
+                }
             }
-            System.out.println("path is "+ path);
-            System.out.println("fileType is "+ fileType);
-            HttpResponse response = new HttpResponse(path, fileType);
-            byte[] responseBytes = response.getResponse();
-            socket.getOutputStream().write(responseBytes);
-            socket.getOutputStream().flush();
-//            try{Thread.sleep(10000);} catch (InterruptedException e) {
-//                System.out.println("Thread error: "+e.getMessage());
-//            }
+            if(headers.containsKey("Sec-WebSocket-Key")){
+                System.out.println("web socket request");
+                System.out.println(headers.get("Sec-WebSocket-Key"));
+                String webSocketKey = headers.get("Sec-WebSocket-Key");
+                WebSocketHandler wsh = new WebSocketHandler(input, output, webSocketKey);
+                wsh.startConnection();
+
+
+
+            } else {
+                String path = "./src/resources/" + this.fileName;
+                if (fileName.isEmpty()) {
+                    path = "./src/resources/index.html";
+                    fileType = "html";
+                }
+                else {
+                    this.fileType = this.fileName.split("[.]")[1];
+                }
+
+                HttpResponse response = new HttpResponse(path, fileType);
+                byte[] responseBytes = response.getResponse();
+                output.write(responseBytes);
+                output.flush();
+
+            }
+
 
         } catch (IOException e) {
             System.err.println("Error with input stream from client socket: "+e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
     }
+
+
 }
