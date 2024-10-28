@@ -1,3 +1,5 @@
+import resources.Room;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -8,6 +10,8 @@ public class WebSocketHandler {
     InputStream inputStream;
     OutputStream outputStream;
     String webSocketKey;
+    String userName;
+    String roomName;
 
     public WebSocketHandler(InputStream inputStream, OutputStream outputStream, String webSocketKey){
         this.inputStream = inputStream;
@@ -50,26 +54,30 @@ public class WebSocketHandler {
                 message[i] ^= mask[i%4];
             }
             String msgReceived = new String(message);
-            
+
             System.out.println(new String(message));
 
+            //extract messageType, userName and roomName
             DataOutputStream out = new DataOutputStream(outputStream);
-            // FIN and text opcode
-            out.writeByte(0x81);
-
-            if(len == 127){
-                out.writeByte(0x7F);
-                out.writeLong(len);
-            } else if(len == 126){
-                out.writeByte(0x7D);
-                out.writeShort((int)len);
-            } else {
-                out.writeByte((int)len);
+            String messageType="";
+            String[] receivedMessages = msgReceived.split(" ");
+            if(receivedMessages[0].equals("join")){
+                messageType =  receivedMessages[0];
+                userName =  receivedMessages[1];
+                roomName =  receivedMessages[2];
+                Room.getRoom(out, roomName, userName);
+            } else if(receivedMessages[0].equals("message")) {
+                messageType =  receivedMessages[0];
+                String clientMessage = receivedMessages[1];
+                Room.transmitMessage(out, roomName, userName, clientMessage);
+            } else if(receivedMessages[0].equals("leave")) {
+                Room.leaveRoom(out, roomName, userName);
+            } else if(receivedMessages[0].equals("rooms")){
+                Room.getRooms(out);
             }
-            //payload
-            out.write(message);
-            out.flush();
+
         }
     }
+
 
 }

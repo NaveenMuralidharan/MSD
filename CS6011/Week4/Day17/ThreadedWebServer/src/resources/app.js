@@ -14,11 +14,15 @@ let messageDisplay = document.querySelector("#messageDisplay");
 let messageInput = document.querySelector("#messageInput");
 let sendButton = document.querySelector("#sendButton");
 let leaveButton = document.querySelector("#leaveButton");
+let roomsList = document.querySelector("#roomsList");
+let roomsButton = document.querySelector("#getRooms");
 let isJoined = false;
+
 
 joinButton.addEventListener("click", handleJoin);
 sendButton.addEventListener("click", handleSend);
 leaveButton.addEventListener("click", handleLeave);
+roomsButton.addEventListener("click", getRooms);
 
 messageForm.hidden = true;
 
@@ -57,19 +61,34 @@ function handleConnectCB(){
 
 function handleMessageCB(e){
       console.log(e);
-//    let response = JSON.parse(e.data);
-//    if(response.type == "join"){
-//        let user = userName.value;
-//        let chat = chatRoom.value;
-//        userName.value = "";
-//        chatRoom.value = "";
-//        isJoined = true;
-//        handleStyling();
+    let response = JSON.parse(e.data);
+    console.log(response);
+    console.log(response.type);
+
+    if(response.type == "join"){
+        let user = userName.value;
+        let chat = chatRoom.value;
+        userName.value = "";
+        chatRoom.value = "";
+        isJoined = true;
+        messageDisplay.innerHTML = "";
+        handleStyling();
 //        messageDisplay.innerHTML += "<p>" + user +" Joined room " + chat + "</p>";
-//    } else if(response.type == "message"){
-//        messageInput.value = "";
-//        messageDisplay.innerHTML += "<p>"+response.user+" : "+response.message+"</p>";
-//    }
+    }
+    else if(response.type == "message"){
+        messageInput.value = "";
+        messageDisplay.innerHTML += "<p>"+response.user+" : "+response.message+"</p>";
+    }
+    else if(response.type == "rooms"){
+        console.log(response.rooms);
+        let rooms = response.rooms.split(",");
+        console.log(rooms);
+        rooms.forEach(room => {
+            let newRoomLi = document.createElement("li");
+            newRoomLi.innerText = room;
+            roomsList.appendChild(newRoomLi);
+        });
+    }
 }
 
 function handleErrorCB(){
@@ -80,3 +99,6 @@ function handleCloseCB(){
     console.log("closed");
 }
 
+function getRooms(){
+    ws.send("rooms");
+}
