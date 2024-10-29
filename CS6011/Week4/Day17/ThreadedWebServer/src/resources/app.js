@@ -18,7 +18,6 @@ let roomsList = document.querySelector("#roomsList");
 let roomsButton = document.querySelector("#getRooms");
 let isJoined = false;
 
-
 joinButton.addEventListener("click", handleJoin);
 sendButton.addEventListener("click", handleSend);
 leaveButton.addEventListener("click", handleLeave);
