@@ -60,7 +60,7 @@ public class WebSocketHandler {
             //extract messageType, userName and roomName
             DataOutputStream out = new DataOutputStream(outputStream);
             String messageType="";
-            String[] receivedMessages = msgReceived.split(" ");
+            String[] receivedMessages = msgReceived.split(",");
             if(receivedMessages[0].equals("join")){
                 messageType =  receivedMessages[0];
                 userName =  receivedMessages[1];

@@ -45,12 +45,12 @@ function handleLeave(){
 }
 
 function handleSend(){
-    let msg = "message " + messageInput.value;
+    let msg = "message," + messageInput.value;
     ws.send(msg);
 }
 
 function handleJoin(){
-    ws.send("join " + userName.value + " " + chatRoom.value);
+    ws.send("join," + userName.value + "," + chatRoom.value);
 }
 
 function handleConnectCB(){
