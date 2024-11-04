@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Room {
+//    private ArrayList<String> messages = new ArrayList<>();
     static HashMap<String, ArrayList<String>> roomAndMessages = new HashMap<>();
     static HashMap<String, ArrayList<DataOutputStream>> roomsAndClients = new HashMap<>();
 
@@ -97,6 +98,7 @@ public class Room {
     }
 
     public static void transmitMessage(DataOutputStream out, String roomName, String userName, String clientMessage) throws IOException {
+        System.out.println();
         //add messsge to room messages
         String updatedClientMessage = userName + " : " + clientMessage;
         roomAndMessages.get(roomName).add(updatedClientMessage);

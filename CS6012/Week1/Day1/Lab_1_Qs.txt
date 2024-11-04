@@ -1,0 +1,38 @@
+
+1. Where is the assertEquals method defined? What does it do? Can we use assertEquals for more than just int types? (Hint: Consult the API for JUnit)
+
+assertEquals is a method in org.junit.jupiter.api.Assertions. It compares the first argument you pass it with the second argument. You an use assertEquals for multiple types, like double,char etc.
+
+Briefly describe what each of the three tests is checking.
+emptyArray() tests an empty array, in which case the result should be -1, allArrayElementsEqual tests an array where all elements are equal, in which case the result should be 0, and the randomArrayElements tests the provided random array, where smallest diff is 4.
+
+
+Why is our unimplemented findSmallestDiff method passing one of the tests?
+It's default is set to return 0, and allElementsEqual() is expecting 0 as the result.
+
+Why are we failing the third test? How should our method be modified to correct this?
+The current method is looking for the difference value which could be negative, it should be calculating the absolute value of the difference, when that change is made, it passes the test.
+
+What is the appropriate call to assertEquals for your new test (test 4)?
+I wrote a oneDiffArrayElements() test that takes in an array where all element pairs have a diff of 1, and it worked.
+
+
+Provide one more test (test 5) for the findSmallestDiff method. Briefly describe your test and write the call to assertEquals here.
+I wrote a test that takes in an array of negative ints where smallest diff is 1 and it worked.
+@Test
+    public void negativeArrayElements() {
+        assertEquals(1, DiffUtil.findSmallestDiff(arr8));
+    }
+
+Briefly describe your unit tests for Assignment 1.
+
+emptyArray: Tests the scenario where the input array is empty. It expects the method to return -1, indicating no differences can be found.
+allArrayElementsEqual: Tests an array where all elements are the same. The expected result is 0, as there is no difference between any of the elements.
+smallRandomArrayElements: Tests a small array with random distinct elements. It expects the smallest difference between elements to be 4.
+twoArrayElements: Tests an array with exactly two elements. The expected smallest difference is 1, the difference between the two elements.
+zeroArrayElements: Tests an array with no elements (assuming this is similar to an empty array). It expects the result to be 0.
+oneDiffArrayElements: Tests an array with two elements that differ by 1. It expects the method to return 1, the difference between the two elements.
+oneArrayElements: Tests an array with a single element. It expects the result to be -1, as there are no differences to compute.
+negativeArrayElements: Tests an array with negative numbers. It expects the smallest difference between elements to be 1, indicating the smallest absolute difference between any two elements.
+
+
