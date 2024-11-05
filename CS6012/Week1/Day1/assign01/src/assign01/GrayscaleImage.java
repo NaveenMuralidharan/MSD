@@ -97,6 +97,8 @@ public class GrayscaleImage {
             throw new IllegalArgumentException();
         }
         return imageData[y][x];
+
+
     }
 
     /**
@@ -116,13 +118,16 @@ public class GrayscaleImage {
         if(this.imageData.length != otherImage.imageData.length || this.imageData[0].length != otherImage.imageData[0].length){
             return false;
         }
-        //NOTE: deal with double equals precision
+        // precision threshold
+        double epsilon = 0.001;
         //iterate through each imageData and check if pixel values match
         for(var row = 0; row < imageData.length; row++){
             for(var col = 0; col < imageData[0].length; col++){
-                if(this.getPixel(row, col) != otherImage.getPixel(row, col)){
-                    return false;
-                }
+
+                    if(Math.abs(this.imageData[row][col] - otherImage.imageData[row][col]) > 0.001){
+                        return false;
+                    }
+
             }
         }
         return  true;
@@ -139,7 +144,7 @@ public class GrayscaleImage {
         double count = 0;
         for(var row = 0; row < imageData.length; row++){
             for(var col = 0; col < imageData[0].length; col++){
-                sum += this.getPixel(row, col);
+                sum += this.imageData[row][col];
                 count += 1;
             }
         }
@@ -205,9 +210,6 @@ public class GrayscaleImage {
 
         for(int row = 0; row < height; row++){
             for(int col = 0; col < width; col++){
-//                System.out.println("row is "+row);
-//                System.out.println("col is "+col);
-//                System.out.println(this.imageData[startRow+row][startCol+col]);
                 croppedImage.imageData[row][col] = this.imageData[startRow+row][startCol+col];
             }
         }
