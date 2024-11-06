@@ -1,0 +1,28 @@
+
+On your computer, how many times per second does the millisecond timer update?
+
+the millisecond timer typically updates 1000 times per second (or once every millisecond), but because of how System.currentTimeMillis() works, it may not capture every individual update if the time between checks is shorter than 1 millisecond.
+
+Is it possible to determine how many times per second the nanosecond timer updates? If so, how many? If not, why not?
+
+No, it's not possible to directly determine how many times per second the nanosecond timer updates based solely on the System.nanoTime() output. While System.nanoTime() gives high-resolution timing, the frequency at which the timer updates depends on the hardware and OS and other factors.
+The results of my experiment show that the system detects approximately 23.95 million "advances" per second, but this doesn't correspond directly to the actual update rate of the hardware timer, which could be lower.
+
+Judging by experiment 4, how long does it appear to take to compute System.nanoTime()?
+computing System.nanoTime() is typically in the range of 40-100 nanoseconds
+
+Estimate the precision of your answer above (+/- how many nanoseconds?)
+The most frequent times are in the range of 42-84 nanoseconds. Standard deviation ≈ (Upper bound - Lower bound) / 4 = (84 - 42) / 4 = 10.5 nanoseconds, so precision is 10.5 nanoseconds.
+
+How long does it take to compute the square root of the numbers 1 through 10?
+I ran the code 5 times with following times [56.0, 57.0, 53.0, 49.0, 56.0]
+
+Estimate the precision of your answer above (+/- how many nanoseconds?)
+Mean was 54.2. Sum of squared deviations:
+42.8, standard deviation or precision =8.56 nanoseconds.
+
+If you repeat the square root test 100x as many times, does the precision improve?
+If I run Experiment 8 in 100x more loops, the precision is 0. It all runs in average of 3.0 nanoseconds.
+
+How could you improve the results (get a more accurate estimate of elapsed time)?
+The number of iterations can be increased further to lessen the noise and the warm-up stage can be increased to stabilize the system before calculation.
