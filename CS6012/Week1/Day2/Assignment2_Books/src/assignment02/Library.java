@@ -11,12 +11,12 @@ import java.util.Scanner;
  * Class representation of a library (a collection of library books).
  * 
  */
-public class Library {
+public class Library <Type>{
 
-  private ArrayList<LibraryBook> library;
+  private ArrayList<LibraryBook<Type>> library;
 
   public Library() {
-    library = new ArrayList<LibraryBook>();
+    library = new ArrayList<LibraryBook<Type>>();
   }
 
   /**
@@ -30,7 +30,7 @@ public class Library {
    *          -- title of the book to be added
    */
   public void add(long isbn, String author, String title) {
-    library.add(new LibraryBook(isbn, author, title));
+    library.add(new LibraryBook<Type>(isbn, author, title));
   }
 
   /**
@@ -39,7 +39,7 @@ public class Library {
    * @param list
    *          -- list of library books to be added
    */
-  public void addAll(ArrayList<LibraryBook> list) {
+  public void addAll(ArrayList<LibraryBook<Type>> list) {
     library.addAll(list);
   }
 
@@ -52,7 +52,7 @@ public class Library {
    * @param filename
    */
   public void addAll(String filename) {
-    ArrayList<LibraryBook> toBeAdded = new ArrayList<LibraryBook>();
+    ArrayList<LibraryBook<Type>> toBeAdded = new ArrayList<LibraryBook<Type>>();
 
     try (Scanner fileIn = new Scanner(new File(filename))) {
 
@@ -78,7 +78,7 @@ public class Library {
             throw new ParseException("Title", lineNum);
           }
           String title = lineIn.next();
-          toBeAdded.add(new LibraryBook(isbn, author, title));
+          toBeAdded.add(new LibraryBook<Type>(isbn, author, title));
         }
         lineNum++;
       }
@@ -102,11 +102,11 @@ public class Library {
    * @param isbn
    *          -- ISBN of the book to be looked up
    */
-  public String lookup(long isbn) {
+  public Type lookup(long isbn) {
 
     boolean foundBook = false;
-    LibraryBook lookupBook= null;
-    for(LibraryBook book : library){
+    LibraryBook<Type> lookupBook= null;
+    for(LibraryBook<Type> book : library){
       if(book.getIsbn() == isbn){
         foundBook = true;
         lookupBook = book;
@@ -131,10 +131,11 @@ public class Library {
    * @param holder
    *          -- holder whose checked out books are returned
    */
-  public ArrayList<LibraryBook> lookup(String holder) {
-    ArrayList<LibraryBook> holdersBooks = new ArrayList<>();
+  public ArrayList<LibraryBook<Type>> lookup(Type holder) {
+    ArrayList<LibraryBook<Type>> holdersBooks = new ArrayList<>();
 
-    for(LibraryBook book : library){
+    for(LibraryBook<Type> book : library){
+      System.out.println(book.getHolder());
       if(book.getHolder() != null && book.getHolder().equals(holder)){
         holdersBooks.add(book);
       }
@@ -164,9 +165,9 @@ public class Library {
    *          -- year of the new due date of the library book
    * 
    */
-  public boolean checkout(long isbn, String holder, int month, int day, int year) {
+  public boolean checkout(long isbn, Type holder, int month, int day, int year) {
 
-    for(LibraryBook book : library){
+    for(LibraryBook<Type> book : library){
       if(book.getIsbn() == isbn && book.getHolder() == null){
         book.checkoutBook(holder, new GregorianCalendar(year, month, day));
         return true;
@@ -189,7 +190,7 @@ public class Library {
    */
   public boolean checkin(long isbn) {
 
-    for(LibraryBook book : library){
+    for(LibraryBook<Type> book : library){
       if(book.getHolder() != null && book.getIsbn() == isbn){
         book.checkIn();
         return true;
@@ -213,7 +214,7 @@ public class Library {
   public boolean checkin(String holder) {
     boolean foundHolder = false;
 
-    for(LibraryBook book : library){
+    for(LibraryBook<Type> book : library){
       if(book.getHolder() != null && book.getHolder().equals(holder)){
         foundHolder = true;
         book.checkIn();
