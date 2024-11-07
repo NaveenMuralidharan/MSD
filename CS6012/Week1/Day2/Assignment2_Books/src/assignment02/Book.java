@@ -14,7 +14,13 @@ public class Book {
   private String author;
 
   private String title;
-
+  /**
+   * Constructs a new {@code Book} with the specified ISBN, author, and title.
+   *
+   * @param isbn The ISBN of the book.
+   * @param author The author of the book.
+   * @param title The title of the book.
+   */
   public Book(long isbn, String author, String title) {
     this.isbn = isbn;
     this.author = author;
@@ -67,7 +73,9 @@ public class Book {
   public String toString() {
     return isbn + ", " + author + ", \"" + title + "\"";
   }
-
+  /**
+   * Returns a string representation of the book to be used in hashmap, hashset, hashtable.
+   */
   @Override
   public int hashCode() {
     return (int) isbn + author.hashCode() + title.hashCode();
