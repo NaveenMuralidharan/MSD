@@ -172,4 +172,168 @@ public class SortUtil {
         return list;
     }
 
+    // Enum for pivot strategies for easy switching
+    public enum PivotStrategy {
+        MIDDLE, // Middle index as the pivot
+        MEDIAN_OF_QUARTILES, // Median of 25%, 50%, and 75% as the pivot
+        RANDOM // Random pivot
+    }
+
+    /**
+     * Public method to sort an ArrayList using quicksort.
+     *
+     * @param list the ArrayList to be sorted
+     * @param comparator the comparator to compare elements
+     * @param pivotStrategy the strategy used to choose the pivot element
+     */
+    public static <T> void quicksort(ArrayList<T> list, Comparator<? super T> comparator, PivotStrategy pivotStrategy) {
+        quicksort(list, comparator, 0, list.size() - 1, pivotStrategy);
+    }
+
+    /**
+     * Recursive quicksort method that sorts the ArrayList using the specified pivot strategy.
+     *
+     * @param list the ArrayList to be sorted
+     * @param comparator the comparator to compare elements
+     * @param low the starting index of the sublist to be sorted
+     * @param high the ending index of the sublist to be sorted
+     * @param pivotStrategy the strategy used to choose the pivot element
+     */
+    private static <T> void quicksort(ArrayList<T> list, Comparator<? super T> comparator, int low, int high, PivotStrategy pivotStrategy) {
+        // Base case: if low >= high, the sublist has one or no elements, no sorting needed
+        if (low >= high) {
+            return;
+        }
+
+        // Choose pivot based on the selected strategy
+        int pivotIndex = choosePivot(list, comparator, low, high, pivotStrategy);
+
+        // Partition the list based on the pivot
+        int pivotNewIndex = partition(list, comparator, low, high, pivotIndex);
+
+        // Recursively sort the left and right partitions
+        quicksort(list, comparator, low, pivotNewIndex - 1, pivotStrategy);
+        quicksort(list, comparator, pivotNewIndex + 1, high, pivotStrategy);
+    }
+
+    /**
+     * Partitions the list into two halves around the pivot element.
+     *
+     * @param list the ArrayList to be partitioned
+     * @param comparator the comparator to compare elements
+     * @param low the starting index of the sublist to be partitioned
+     * @param high the ending index of the sublist to be partitioned
+     * @param pivotIndex the index of the pivot element
+     * @return the index where the pivot element should be placed
+     */
+    public static <T> int partition(ArrayList<T> list, Comparator<? super T> comparator, int low, int high, int pivotIndex) {
+        T pivot = list.get(pivotIndex);
+        // Move pivot to the end
+        swap(list, pivotIndex, high);
+
+        int i = low;
+        for (int j = low; j < high; j++) {
+            if (comparator.compare(list.get(j), pivot) <= 0) {
+                swap(list, i, j);
+                i++;
+            }
+        }
+
+        // Move pivot to its correct position
+        swap(list, i, high);
+        return i;
+    }
+
+    /**
+     * Helper method to swap two elements in the list.
+     *
+     * @param list the ArrayList containing the elements to swap
+     * @param i the index of the first element
+     * @param j the index of the second element
+     */
+    private static <T> void swap(ArrayList<T> list, int i, int j) {
+        T temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
+    }
+
+    /**
+     * Helper method to choose the pivot based on the selected strategy.
+     *
+     * @param list the ArrayList containing the elements
+     * @param comparator the comparator to compare elements
+     * @param low the starting index of the sublist to be sorted
+     * @param high the ending index of the sublist to be sorted
+     * @param pivotStrategy the strategy used to choose the pivot element
+     * @return the index of the selected pivot element
+     */
+    private static <T> int choosePivot(ArrayList<T> list, Comparator<? super T> comparator, int low, int high, PivotStrategy pivotStrategy) {
+        switch (pivotStrategy) {
+            case MIDDLE:
+                return middle(list, low, high); // Select the middle index as the pivot
+            case MEDIAN_OF_QUARTILES:
+                return medianOfQuartiles(list, comparator, low, high); // Select the median of 25%, 50%, and 75%
+            case RANDOM:
+                return randomPivot(list, low, high); // Select a random element as pivot
+            default:
+                throw new IllegalArgumentException("Unknown pivot strategy");
+        }
+    }
+
+    /**
+     * Helper method to select the middle index as the pivot.
+     *
+     * @param list the ArrayList containing the elements
+     * @param low the starting index of the sublist to be sorted
+     * @param high the ending index of the sublist to be sorted
+     * @return the index of the middle element
+     */
+    private static <T> int middle(ArrayList<T> list, int low, int high) {
+        // Select the middle index of the list
+        return low + (high - low) / 2;
+    }
+
+    /**
+     * Helper method to select the median of 25%, 50%, and 75% as the pivot.
+     *
+     * @param list the ArrayList containing the elements
+     * @param comparator the comparator to compare elements
+     * @param low the starting index of the sublist to be sorted
+     * @param high the ending index of the sublist to be sorted
+     * @return the index of the pivot element
+     */
+    private static <T> int medianOfQuartiles(ArrayList<T> list, Comparator<? super T> comparator, int low, int high) {
+        int mid = low + (high - low) / 2;
+        int quartile25 = low + (high - low) / 4;
+        int quartile75 = high - (high - low) / 4;
+
+        T first = list.get(low);
+        T middle = list.get(mid);
+        T third = list.get(quartile25);
+        T last = list.get(quartile75);
+        T finalElement = list.get(high);
+
+        // Find median of the four elements: first, middle, quartile25, quartile75, and last.
+        T[] candidates = (T[]) new Object[]{first, middle, third, last, finalElement};
+        java.util.Arrays.sort(candidates, comparator);
+        T pivotValue = candidates[2]; // Median of 25%, 50%, 75%
+
+        // Find the index of the pivot in the list
+        return list.indexOf(pivotValue);
+    }
+
+    /**
+     * Helper method to select a random pivot.
+     *
+     * @param list the ArrayList containing the elements
+     * @param low the starting index of the sublist to be sorted
+     * @param high the ending index of the sublist to be sorted
+     * @return the index of the randomly selected pivot
+     */
+    private static <T> int randomPivot(ArrayList<T> list, int low, int high) {
+        Random rand = new Random();
+        return rand.nextInt(high - low + 1) + low; // Select a random index between low and high
+    }
+
+
 }
