@@ -1,0 +1,12 @@
+What activities did you do as the driver? What activities did you do as the navigator?
+-I drove the first method, and my partner, Ajith, wrote the second
+What are the advantages and disadvantages of serving in each role?
+-As a driver, I could figure out the general logic and pseudocode, but it was hard to envision the syntax without writing
+How often did you and your partner switch roles? Did you switch often enough?
+-we switched after on method was written, we each wrote one method
+Which is your preferred role and why?
+I prefer to drive, as it removes me from syntax worries and I can focus on the logic
+Explain why this is a BAD test case for your method: assertEquals("bird", MedianSolver.median(new String[]{"bird", "cat", "dog", "ant"}))
+-the method returns "bird" which is the first of 2 middle elements so it can be confusing to return it as the "median"
+Explain how you could change the test to make it "valid" and explain how you could change the specification so that this is considered a "good" test
+-we can add another string to the array such that "bird" remains the median and return it.
