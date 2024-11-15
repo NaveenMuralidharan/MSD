@@ -1,88 +1,120 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import LoginPage from './LoginPage';
-import MessageDisplay from './MessageDisplay';
-import MessageInput from './MessageInput';
-import { useEffect, useState } from 'react';
+import JoinForm from './JoinForm';
+import MessageForm from './MessageForm';
 
-function App() {
+// WebSocket URL (change if necessary)
+const wsUrl = "ws://localhost:8080";
 
-  const[showMessages, setShowMessages] = useState(false);
-  const [messages, setMessages] = useState([]);
+const App = () => {
+  // State variables
   const [ws, setWs] = useState(null);
+  const [isJoined, setIsJoined] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [chatRoom, setChatRoom] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [messageInput, setMessageInput] = useState('');
 
-  useEffect(()=>{
-    // Create WebSocket connection
-    const webSocket = new WebSocket("ws://localhost:8081");
-    //jar file test
-    // const webSocket = new WebSocket("ws://localhost:8080");
-    setWs(webSocket);
+  // Open WebSocket connection on mount
+  useEffect(() => {
+    const socket = new WebSocket(wsUrl);
+    
+    socket.onopen = handleConnect;
+    socket.onclose = handleClose;
+    socket.onerror = handleError;
+    socket.onmessage = handleMessage;
 
-    // Connection opened
-    webSocket.onopen = () => {
-      console.log("connected");
+    setWs(socket);
+
+    return () => {
+      socket.close(); // Close connection on cleanup
     };
-
-    // Listen for messages
-    webSocket.onmessage = handleMessageCB;
-
-    return ()=>{ webSocket.close();}
   }, []);
 
-  const handleJoin = (user, room)=>{
+  const handleConnect = () => {
+    console.log("Connected to WebSocket");
+  };
 
-    //send join request
-    ws.send(`join,${user},${room}`);
-    //jar file test
-    // ws.send(`join ${user} ${room}`);
-    
-  }
+  const handleClose = () => {
+    console.log("Connection closed");
+  };
 
-  const handleMessageSend = (message) => {
-    ws.send(`message,${message}`);
-    //jar file test
-    // ws.send(`message ${message}`);
-  }
+  const handleError = () => {
+    console.log("Error with WebSocket");
+  };
+
+  const handleMessage = (event) => {
+    const response = JSON.parse(event.data);
+    if (response.type === 'join') {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: userName, message: `Joined room ${chatRoom}` }
+      ]);
+      setIsJoined(true);
+    } else if (response.type === 'message') {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: response.user, message: response.message }
+      ]);
+    }
+  };
+
+  const handleJoin = () => {
+    if (ws && userName && chatRoom) {
+      ws.send(`join ${userName} ${chatRoom}`);
+      setUserName('');
+      setChatRoom('');
+    }
+  };
+
+  const handleSend = () => {
+    if (ws && messageInput) {
+      const msg = `message ${messageInput}`;
+      ws.send(msg);
+      setMessageInput('');
+    }
+  };
 
   const handleLeave = () => {
-    ws.send("leave");
-    //clear messages from old room
-    let clearedMessages = [];
-    setMessages([]);
-    
-    setShowMessages(false);
-  }
-
-  function handleMessageCB(e){
-    console.log(e);
-    let response = JSON.parse(e.data);
-    if(response.type == "join"){
-      //hide the login form
-      console.log("show messages",showMessages);
-      setShowMessages(true);
-    } else if(response.type == "message"){
-      const message = `${response.user} : ${response.message}`;
-      console.log(message);
-      // setMessages((prevMessages) => [...prevMessages, message]);
-      let newMessages = messages;
-      newMessages.push(message);
-      setMessages(newMessages);
-      // setShowMessages(true);
-      console.log(messages);
+    if (ws) {
+      ws.send('leave');
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: userName, message: `has left chat room ${chatRoom}` }
+      ]);
+      setIsJoined(false);
     }
-  }
+  };
+
+  const handleStyling = () => {
+    return isJoined ? 'joined' : 'not-joined';
+  };
 
   return (
     <div className="App">
-      { !showMessages ? <LoginPage handleJoin = {handleJoin} /> : 
-        <div>
-          <MessageDisplay messages={messages} />
-          <MessageInput handleMessageSend={handleMessageSend} handleLeave={handleLeave} />
-        </div>
-      }
-
+      <div className={handleStyling()}>
+        {!isJoined ? (
+          <JoinForm
+            userName={userName}
+            setUserName={setUserName}
+            chatRoom={chatRoom}
+            setChatRoom={setChatRoom}
+            handleJoin={handleJoin}
+          />
+        ) : (
+          <MessageForm
+            messages={messages}
+            messageInput={messageInput}
+            setMessageInput={setMessageInput}
+            handleSend={handleSend}
+            handleLeave={handleLeave}
+          />
+        )}
+      </div>
     </div>
   );
-}
+};
+
 
 export default App;

@@ -135,7 +135,7 @@ class SortUtilTest {
         Comparator<Integer> comparator = Integer::compareTo;
 
         // Sort using quicksort with the MIDDLE pivot strategy
-        SortUtil.quicksort(list, comparator, SortUtil.PivotStrategy.MIDDLE);
+        SortUtil.quicksort(list, comparator);
 
         // Check if the list is sorted
         for (int i = 1; i < list.size(); i++) {
@@ -149,7 +149,7 @@ class SortUtilTest {
         Comparator<Integer> comparator = Integer::compareTo;
 
         // Sort using quicksort with the RANDOM pivot strategy
-        SortUtil.quicksort(list, comparator, SortUtil.PivotStrategy.RANDOM);
+        SortUtil.quicksort(list, comparator);
 
         // Check if the list is sorted
         for (int i = 1; i < list.size(); i++) {
@@ -163,7 +163,7 @@ class SortUtilTest {
         Comparator<Integer> comparator = Integer::compareTo;
 
         // Sort using quicksort with the MEDIAN_OF_QUARTILES pivot strategy
-        SortUtil.quicksort(list, comparator, SortUtil.PivotStrategy.MEDIAN_OF_QUARTILES);
+        SortUtil.quicksort(list, comparator);
 
         // Check if the list is sorted
         for (int i = 1; i < list.size(); i++) {

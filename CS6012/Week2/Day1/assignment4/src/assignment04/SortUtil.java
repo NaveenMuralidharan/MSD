@@ -184,9 +184,10 @@ public class SortUtil {
      *
      * @param list the ArrayList to be sorted
      * @param comparator the comparator to compare elements
-     * @param pivotStrategy the strategy used to choose the pivot element
+
      */
-    public static <T> void quicksort(ArrayList<T> list, Comparator<? super T> comparator, PivotStrategy pivotStrategy) {
+    public static <T> void quicksort(ArrayList<T> list, Comparator<? super T> comparator) {
+        PivotStrategy pivotStrategy = SortUtil.PivotStrategy.MIDDLE;
         quicksort(list, comparator, 0, list.size() - 1, pivotStrategy);
     }
 
