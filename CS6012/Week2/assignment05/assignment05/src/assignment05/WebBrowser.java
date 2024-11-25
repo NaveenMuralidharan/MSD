@@ -30,13 +30,15 @@ public class WebBrowser {
      *
      * @param history A list of URLs representing the browsing history. The first URL in the list is the current page.
      */
-    public WebBrowser(SinglyLinkedList<URL> history){
+    public WebBrowser(SinglyLinkedList<URL> history) throws NoSuchElementException{
+
         backButton = new LinkedListStack<>();
         forwardButton = new LinkedListStack<>();
-        System.out.println(history.size());
-        System.out.println(history.get(0));
-        for(int i = history.size()-1; i <= 0 ; i++){
-            System.out.println(history.get(i));
+//        if(history.isEmpty()){
+//            throw new NoSuchElementException("history cannot be empty");
+//        }
+        for(int i = history.size()-1; i >= 0 ; i--){
+
             backButton.push(history.get(i));
         }
     }
@@ -66,9 +68,9 @@ public class WebBrowser {
         URL recent = backButton.pop();
         forwardButton.push(recent);
 
-        if(backButton.isEmpty()){
-            throw new NoSuchElementException("No previous webpage to visit");
-        }
+//        if(backButton.isEmpty()){
+//            throw new NoSuchElementException("No previous webpage to visit");
+//        }
         return backButton.peek();
     }
     /**

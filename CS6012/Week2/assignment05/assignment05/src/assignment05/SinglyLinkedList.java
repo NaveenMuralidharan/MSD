@@ -257,11 +257,19 @@ public class SinglyLinkedList<E> implements List<E>{
             if(lastReturned == head){
                 head = head.next;
             } else {
-                while(current != null && current.next != lastReturned){
-                    current = current.next;
+
+//                while(current != null && current.next != lastReturned){
+//                    current = current.next;
+//                }
+//                if(current != null){
+//                    current.next = lastReturned.next;
+//                }
+                Node removeNode = head;
+                while(removeNode != null && removeNode.next != lastReturned){
+                    removeNode = removeNode.next;
                 }
-                if(current != null){
-                    current.next = lastReturned.next;
+                if(removeNode != null) {
+                    removeNode.next = current;
                 }
             }
             size--;

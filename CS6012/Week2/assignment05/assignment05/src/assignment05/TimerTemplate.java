@@ -88,6 +88,7 @@ abstract public class TimerTemplate {
      */
     Result[] run(){
         var ret = new Result[problemSizes.length];
+        System.out.println(problemSizes.length);
         for(int i = 0; i < problemSizes.length; i++){
             ret[i] = timeIt(problemSizes[i]);
         }

@@ -113,10 +113,10 @@ class WebBrowserTest {
         WebBrowser preloadedBrowser = new WebBrowser(preloadedHistory);
 
         // The first element in preloadedHistory is the most recently visited
-//        assertEquals(3, preloadedBrowser.history().size());
-//        assertEquals("https://example.net", preloadedBrowser.history().get(0).toString());
-//        assertEquals("https://example.org", preloadedBrowser.history().get(1).toString());
-//        assertEquals("https://example.com", preloadedBrowser.history().get(2).toString());
+        assertEquals(3, preloadedBrowser.history().size());
+        assertEquals("https://example.net", preloadedBrowser.history().get(0).toString());
+        assertEquals("https://example.org", preloadedBrowser.history().get(1).toString());
+        assertEquals("https://example.com", preloadedBrowser.history().get(2).toString());
     }
 
 
