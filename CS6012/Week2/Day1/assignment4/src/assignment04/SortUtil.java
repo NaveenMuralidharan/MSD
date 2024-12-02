@@ -17,7 +17,7 @@ public class SortUtil {
      * @param comparator the Comparator used for comparing elements
      * @param <T> the type of the elements in the list
      */
-    public static <T> void mergesort(ArrayList<T> list, Comparator<? super T> comparator) {
+    public static <T> void mergesort(ArrayList<T> list, Comparator<? super T> comparator, int insertionSortThreshold) {
         if (list == null || list.size() < 2) {
             return; // No need to sort
         }
@@ -26,7 +26,7 @@ public class SortUtil {
         ArrayList<T> temp = new ArrayList<>(list.size());
 
         // Perform the actual sorting
-        mergesort(list, 0, list.size() - 1, temp, comparator);
+        mergesort(list, 0, list.size() - 1, temp, comparator, insertionSortThreshold);
     }
 
     /**
@@ -39,13 +39,15 @@ public class SortUtil {
      * @param comparator the comparator used for comparing elements
      * @param <T> the type of the elements in the list
      */
-    private static <T> void mergesort(ArrayList<T> list, int left, int right, ArrayList<T> temp, Comparator<? super T> comparator) {
-        if (right - left <= INSERTION_SORT_THRESHOLD) {
-            insertionSort(list, left, right, comparator);  // Use Insertion Sort if the sublist is small enough
+    private static <T> void mergesort(ArrayList<T> list, int left, int right, ArrayList<T> temp, Comparator<? super T> comparator, int insertionSortThreshold) {
+//        if (right - left <= INSERTION_SORT_THRESHOLD) {
+//            insertionSort(list, left, right, comparator);  // Use Insertion Sort if the sublist is small enough
+        if(right-left <= insertionSortThreshold){
+            insertionSort(list, left, right, comparator);
         } else {
             int mid = (left + right) / 2;
-            mergesort(list, left, mid, temp, comparator);  // Left half
-            mergesort(list, mid + 1, right, temp, comparator);  // Right half
+            mergesort(list, left, mid, temp, comparator, insertionSortThreshold);  // Left half
+            mergesort(list, mid + 1, right, temp, comparator, insertionSortThreshold);  // Right half
             merge(list, left, mid, right, temp, comparator);  // Merge the sorted halves
         }
     }
@@ -187,7 +189,12 @@ public class SortUtil {
 
      */
     public static <T> void quicksort(ArrayList<T> list, Comparator<? super T> comparator) {
-        PivotStrategy pivotStrategy = SortUtil.PivotStrategy.MIDDLE;
+        PivotStrategy pivotStrategy = PivotStrategy.RANDOM;
+        quicksort(list, comparator, 0, list.size() - 1, pivotStrategy);
+    }
+
+    public static <T> void quicksort(ArrayList<T> list, Comparator<? super T> comparator, PivotStrategy pivotStrategy) {
+
         quicksort(list, comparator, 0, list.size() - 1, pivotStrategy);
     }
 

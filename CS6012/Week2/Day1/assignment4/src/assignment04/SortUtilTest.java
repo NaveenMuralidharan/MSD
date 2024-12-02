@@ -20,7 +20,7 @@ class SortUtilTest {
         list.add(5);
 
         // Sorting the list using mergesort
-        SortUtil.mergesort(list, Integer::compareTo);
+        SortUtil.mergesort(list, Integer::compareTo, 10);
 
         // Verify that the list is sorted in ascending order
         assertEquals(1, list.get(0));
@@ -40,7 +40,7 @@ class SortUtilTest {
         list.add("orange");
 
         // Sorting the list using mergesort
-        SortUtil.mergesort(list, String::compareTo);
+        SortUtil.mergesort(list, String::compareTo, 10);
 
         // Verify that the list is sorted in alphabetical order
         assertEquals("apple", list.get(0));
@@ -59,7 +59,7 @@ class SortUtilTest {
         list.add(5);
 
         // Sorting an already sorted list using mergesort
-        SortUtil.mergesort(list, Integer::compareTo);
+        SortUtil.mergesort(list, Integer::compareTo, 10);
 
         // Verify that the list remains the same
         assertEquals(1, list.get(0));
@@ -79,7 +79,7 @@ class SortUtilTest {
         list.add(2);
 
         // Sorting the list using mergesort
-        SortUtil.mergesort(list, Integer::compareTo);
+        SortUtil.mergesort(list, Integer::compareTo, 10);
 
         // Verify that the list is sorted in ascending order, including duplicates
         assertEquals(1, list.get(0));
@@ -95,7 +95,7 @@ class SortUtilTest {
         list.add(42); // Single element
 
         // Sorting the list using mergesort
-        SortUtil.mergesort(list, Integer::compareTo);
+        SortUtil.mergesort(list, Integer::compareTo, 10);
 
         // Verify that the list remains unchanged
         assertEquals(42, list.get(0));
@@ -106,7 +106,7 @@ class SortUtilTest {
         ArrayList<Integer> list = new ArrayList<>(); // Empty list
 
         // Sorting the empty list using mergesort
-        SortUtil.mergesort(list, Integer::compareTo);
+        SortUtil.mergesort(list, Integer::compareTo, 10);
 
         // Verify that the list is still empty
         assertTrue(list.isEmpty());

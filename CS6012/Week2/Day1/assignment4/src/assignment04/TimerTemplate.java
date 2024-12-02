@@ -1,4 +1,4 @@
-package assignment05;
+package assignment04;
 
 /**
  * Abstract class which can be used as a skeleton for perfoming timing tests
@@ -46,10 +46,31 @@ abstract public class TimerTemplate {
     /**
      * Store the problem size + runtime together in 1 object
      * Ignore the "record" stuff", this is basically a class with 2 public members
-     * @param n the problem size
-     * @param avgNanoSecs average time in NS the "timingIteration" code took, in NS
-     */
-    record Result(int n, double avgNanoSecs){} //basically a class with 2 public members
+//     * @param n the problem size
+//     * @param avgNanoSecs average time in NS the "timingIteration" code took, in NS
+//     */
+//    record Result(int n, double avgNanoSecs){} //basically a class with 2 public members
+
+    public static class Result {
+        private final int n;
+        private final double avgNanoSecs;
+
+        // Constructor for Result
+        public Result(int n, double avgNanoSecs) {
+            this.n = n;
+            this.avgNanoSecs = avgNanoSecs;
+        }
+
+        // Getter methods to access private fields
+        public int getN() {
+            return n;
+        }
+
+        public double getAvgNanoSecs() {
+            return avgNanoSecs;
+        }
+    }
+
 
     /** Time one iteration
      * @param n problem size
