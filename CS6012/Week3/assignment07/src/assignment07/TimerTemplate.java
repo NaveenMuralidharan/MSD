@@ -1,4 +1,4 @@
-package assignment05;
+package assignment07;
 
 /**
  * Abstract class which can be used as a skeleton for perfoming timing tests
