@@ -57,10 +57,41 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
         if(contains(item)){
             return false;
         }
-        //Insert the item to the BST
-        root = addRecursive(root, item);
-        size++;
-        return true;
+//        //Insert the item to the BST
+//        root = addRecursive(root, item);
+//        size++;
+//        return true;
+        // Insert the item to the BST iteratively
+        if (root == null) {
+            root = new BSTNode(item);
+            size++;
+            return true;
+        }
+
+        BSTNode current = root;
+        while (true) {
+            int comparison = item.compareTo(current.data);
+            if (comparison < 0) {
+                // Go left
+                if (current.left == null) {
+                    current.left = new BSTNode(item);
+                    size++;
+                    return true;
+                }
+                current = current.left;
+            } else if (comparison > 0) {
+                // Go right
+                if (current.right == null) {
+                    current.right = new BSTNode(item);
+                    size++;
+                    return true;
+                }
+                current = current.right;
+            } else {
+                // Item already exists
+                return false;
+            }
+        }
     }
     /**
      * Helper method to recursively insert an item into the binary search tree.
@@ -129,7 +160,19 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
         if(item == null){
             throw new NullPointerException("item cannot be null");
         }
-        return containsRecursive(root, item);
+//        return containsRecursive(root, item);
+        BSTNode current = root;
+        while (current != null) {
+            int comparison = item.compareTo(current.data);
+            if (comparison < 0) {
+                current = current.left;
+            } else if (comparison > 0) {
+                current = current.right;
+            } else {
+                return true;  // Found the item
+            }
+        }
+        return false;  // Item not found
     }
 
     /**
